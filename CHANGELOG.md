@@ -9,6 +9,31 @@ visible at aiskilltrees.com.
 
 ## [Unreleased]
 
+### Fixed
+
+- `engine/engine.js`: a drag can start on a node box. `.node-box` was excluded from the
+  `mousedown` guard in `setupPanning()`, so a quarter of the visible surface — and much more than
+  that inside a dense column — refused to pan at all. Clicking a node still opens the detail
+  panel: the capture-phase click handler already suppresses that after a real drag. The mastery
+  checkbox and the aid-level tag are still excluded. The drag flag is now also cleared on a
+  timeout after `mouseup`, so a drag released outside the window cannot swallow the next click.
+
+- `engine/tree.css`: drag-to-pan now works vertically, not only sideways. `main` asks for
+  `flex: 1; min-height: 0`, but nothing ever made `<body>` a flex container, so `main` took its
+  content height instead. `#graph-scroll` grew to the full height of the graph — 2638px on a
+  900px screen — which left it with no vertical scroll range at all, and the window scrolled
+  instead. `setupPanning()` sets `scrollTop` on every move; it simply had nowhere to go. `<body>`
+  is now the column it was written to be. The same rule was missing in the stylesheet this file
+  was ported from, so it was never right, on any tree.
+
+### Changed
+
+- `engine/engine.js`: an institution's display name is read as a single string rather than a
+  per-language lookup. Institution names are not translated — an institution has a name, the same
+  way a tree is written in one language. Interface headings around it still are. Requires
+  `vocabulary.json` with `institution.<key>.label` as a string; the site publishes that file, so
+  the two have to move together.
+
 ### Added
 
 - `engine/tokens.css` — the engine's default palette and type. Until now every custom property
@@ -20,6 +45,18 @@ visible at aiskilltrees.com.
 
 ### Changed
 
+- `spec/decomposition.md` is now **v1.2.0**. Section 8's licensing argument was written as
+  though every tree ends up in the published catalogue, and told every teacher not to copy
+  source text because the CSVs are released under an open licence. Most teachers are building a
+  tree for their own classroom, where nothing is relicensed and that reason simply does not
+  apply — leaving the rule looking like a rule without a reason. The section now says what the
+  copyright question actually turns on, which is what is done with the finished tree: licensing
+  is marked as applying only to a published tree, the "it is the wrong output anyway" reason is
+  marked as applying either way, and a note points out that a private tree can become a
+  published one and is cheaper to write correctly than to retrofit. What does *not* depend on
+  publication is section 7 — handing a source document to a model is copying regardless — and
+  both sections now say so. Checklist step 1 asks for the own-use-or-publication decision along
+  with the cohort.
 - `spec/decomposition.md` is now **v1.1.0**. Section 7 previously said, without qualification,
   to hand the specification to an agent together with the curriculum. Section 8 governed what
   may go into a published `nodes.csv` but nothing governed what may be handed to a model in

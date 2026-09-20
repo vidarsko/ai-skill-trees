@@ -7,9 +7,87 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
-## [Unreleased]
+## [0.2.0] - 2026-09-20
+
+The file format changed: a tree is now one spreadsheet. This breaks every
+existing tree, which is what the leading zero in the version number is for —
+it is cheap to do now and expensive after 1.0.
+
+### Changed
+
+- **`tree.json` is gone. `tree.csv` is the whole tree.** Settings ride in the
+  same table as the nodes, as rows with `config` in the `type` column, `name`
+  as the key and `description` as the value; they sit at the top of the file,
+  before the nodes. `noder.csv` is renamed `tree.csv` and
+  `eksamensoppgaver.csv` to `exams.csv` — English, like the columns and the
+  `skill`/`concept` values have always been, and because this is now the file
+  a teacher downloads rather than an internal name.
+
+  The reason is the teacher, not tidiness. A tree that arrives as one file can
+  be written in a spreadsheet, mailed to a colleague, handed to an AI chat as a
+  worked example, and dropped into the builder — all as one thing. Two files
+  with different shapes, one of them JSON, is a format for people who already
+  know what JSON is.
+
+- **`prompt` rows let a teacher rewrite the teaching instructions** from the
+  same spreadsheet: `topic` names the instruction (blank means all of them),
+  `name` the section, and the text goes in `instruction`. They resolve above
+  everything that comes from a file, because that is the one the teacher edits.
+
+  Only the sections they change — the defaults stay shared and versioned. The
+  alternative, baking whole instructions into each tree, would recreate the
+  problem this project spent its first release escaping: a fix that reaches
+  nobody because everyone has a copy. It is also better evidence: you can say
+  exactly what a teacher changed relative to a cited version.
+
+- **An unknown setting is an error.** `aids.2.modell` is reported, with a guess
+  at what was meant and the row number, rather than silently doing nothing. In
+  a spreadsheet, silence is the dangerous response.
+
+- **The topic order is worked out from the graph** when it is not given:
+  lowest level in the column, then median level, then alphabetically. The tops
+  of the columns then form a staircase, and the tree reads left to right in the
+  order the subject can be taken. `topicOrder` still wins where it is given.
+  **This moves columns on existing trees** — Vidar's call, 2026-09-20, on the
+  grounds that a derived order is the one a new contributor gets for free.
+
+- **The storage key and the conversation language's name are derived too**, from
+  the title and from the language file. The migration writes the storage key
+  out explicitly all the same: deriving a new one would throw away every
+  student's ticked-off progress, and a published key is data, not a detail.
+
+- **Validation messages moved into the language files.** They were hardcoded
+  Norwegian, which was invisible while only Norwegian trees had them and
+  obvious the moment an English tree reported a cycle in Norwegian.
 
 ### Added
+
+- **`engine/standalone.html` and `window.AIST_BUNDLE`** — the single-file
+  edition. Everything the engine would fetch can instead be handed to it as
+  data by a `<script>` tag, which is the only way a tree can work from
+  `file://`: a page opened from disk has the origin `null`, and `fetch()` is
+  refused for it. A script tag is not, because it does not hand the page
+  readable bytes, it runs code. Two lines in `fetchJson()`/`fetchText()`; on the
+  web the variable does not exist and nothing changes.
+
+- **`starter/tree.csv`** — eight nodes, two topics, one concept, one
+  cross-topic prerequisite and one `prompt` row, so every feature appears
+  exactly once. It exists to be the format's documentation in working form:
+  a filled-in example is worth more to a language model than a schema, and
+  it is what a teacher should attach when asking an AI for a tree.
+
+- **`spec/authoring-prompt.md`** — contribution 1 written for a teacher rather
+  than for an agent. The full decomposition model stays in `decomposition.md`;
+  this is the paste-into-a-chat entry step, and it insists on the part that is
+  usually skipped: the prerequisites.
+
+- **`engine/vendor/papaparse.min.js`** — PapaParse now ships with the engine
+  instead of coming from a CDN. A downloaded tree cannot depend on a file on
+  someone else's machine, and the site stops making a third-party request to
+  draw a graph. MIT, v5.7.0.
+
+- **`tools/migrate-to-tree-csv.py`** — the one-off that converted all 19
+  published trees.
 
 - `.github/workflows/release.yml` — a push to `main` that bumps `version:` in `CITATION.cff` now
   creates the tag `v<version>` and the GitHub Release by itself, with this file's section for

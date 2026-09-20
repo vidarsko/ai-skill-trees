@@ -18,10 +18,38 @@ student pastes it into whichever chat they already use.
 | `prompts/` | The instructions, in English. One file per contribution, each separately versioned. | CC BY-SA 4.0 |
 | `prompts/subjects/` | What is true for one subject family but not another. Adds sections; does not replace them. | CC BY-SA 4.0 |
 | `languages/` | Everything that varies with language: interface strings, and the language layer in the instructions. | CC BY-SA 4.0 |
-| `spec/` | `decomposition.md` — how a subject is broken into nodes. | CC BY-SA 4.0 |
+| `spec/` | `decomposition.md` — how a subject is broken into nodes — and `authoring-prompt.md`, the short version a teacher pastes into a chat. | CC BY-SA 4.0 |
+| `starter/` | `tree.csv` — a tiny working tree that doubles as the format's documentation. | CC BY-SA 4.0 |
 
 Two licences, split by what the file is: `LICENSE` (MIT) covers code, `LICENSE-CONTENT`
 (CC BY-SA 4.0) covers the written material.
+
+## One file per tree
+
+A skill tree is **one spreadsheet**. `tree.csv` holds the nodes, the settings
+and any teaching instruction the teacher chose to rewrite, and the `type`
+column says which a row is:
+
+| `type` | The row is | Where its parts go |
+|---|---|---|
+| `skill` / `concept` | a node in the graph | the columns mean what they always did |
+| `config` | a setting | `name` = key, `description` = value |
+| `prompt` | an instruction the teacher rewrote | `topic` = which instruction (blank = all), `name` = which section, `instruction` = the text |
+
+Config rows go at the top, before the nodes. `tree.json` is gone as of 0.2.0.
+
+**An unknown setting is an error, not something ignored.** In a spreadsheet,
+silence is the dangerous response: `aids.2.modell` would otherwise simply do
+nothing, forever, and no one would know why. The engine reports it, guesses
+what was meant, and says so on the page.
+
+**Three settings are worked out rather than asked for.** The storage key comes
+from the title, the conversation language's name from the language file, and
+the topic order from the graph's own shape — columns are sorted by the lowest
+level any of their nodes sits at, then by median level, then alphabetically, so
+the tops of the columns form a staircase and the tree reads left to right in
+the order the subject can be taken. Any of the three can still be given
+explicitly, and an explicit value always wins.
 
 ## The three layers
 
@@ -33,8 +61,8 @@ Text is split by what it varies with, not by file type.
 | `prompts/*.json` | nothing | The pedagogy. English is the source. |
 | `prompts/subjects/<family>.json` | subject family | What applies to mathematics but not to social studies. |
 | `languages/<code>.json` | language | Interface strings, and the language layer in the instructions. |
-| `<tree>/tree.json` | one subject | Topic order, storage key, feature switches, slot values. |
-| `<tree>/nodes.csv` | subject + language | The graph itself. |
+| `<tree>/tree.csv` | one subject | Everything that tree owns: the nodes, its settings, and any instruction the teacher rewrote. |
+| `<tree>/exams.csv` | one subject | Optional: past exam questions per node. |
 
 **A new language costs one file.** `languages/<code>.json` — not a copy of the engine, not a new
 page template, not a line of JavaScript.

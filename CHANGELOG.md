@@ -7,7 +7,38 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
-## [Unreleased]
+## [0.1.2] - 2026-09-20
+
+### Changed
+
+- The student may now ask the AI to switch language, and get it. Every instruction carried an
+  absolute prohibition — `languages/<code>.json` → `outputLanguage` said, in so many words, not
+  to change language at any point — so a model that was asked directly refused. The prohibition
+  was written against a real failure, a model drifting into English halfway through a Norwegian
+  conversation, but it was aimed at the model's own initiative and caught the student's request
+  along with it. A student who reads the subject in Norwegian but is more comfortable in another
+  language was told no by a tool whose whole point is that it adapts.
+
+  The rule is now split the way the layers are split. `prompts/shared.json` gains a
+  **`languageSwitch`** section — English source, no language content of its own: an explicit
+  request from the reader is honoured at once and holds for the rest of the conversation, while
+  a message merely written in another language, a quotation or a borrowed word is not a request,
+  so the model still never changes language on its own. Node, skill and concept names keep the
+  spelling the tree gives them, with the translation alongside, so the student can still find
+  them in the graph after a switch.
+
+  `languages/en.json`, `nb.json` and `sv.json` lose the absolute prohibition from
+  `outputLanguage` and keep the rest: which language to start in, that the instruction being
+  partly English is not an invitation to answer in English, and the address forms. A `_comment`
+  in each says why, so the next language file is not written with the prohibition restored — the
+  two would contradict each other, and the model follows the prohibition.
+
+  `practice-tutor.json`, `test-generator.json`, `motivation.json` and `lesson-plan.json` each
+  name `languageSwitch` in `order`, directly after `outputLanguage`, and are now **v1.1.0**;
+  `shared.json` is **v1.1.0**. No engine change: the section resolves through the fallback to
+  `shared.json` that was already there.
+
+## [0.1.1] - 2026-09-20
 
 ### Fixed
 

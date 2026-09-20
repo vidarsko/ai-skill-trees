@@ -48,5 +48,9 @@ so there is no credential with an expiry sitting between the two, and the failur
 expired token (a red workflow and a site that quietly stops updating) does not exist.
 
 **The tag has to be created before the site can deploy**, since the workflow pins `MACHINERY_REF`
-and a missing ref fails the run. Switch the Zenodo webhook on first: a tag created before the
-webhook is active gets no DOI, and the paper cites the tag rather than the branch.
+and a missing ref fails the run. Any tag will do for that purpose.
+
+Zenodo is a separate matter and not a prerequisite here. It archives GitHub *releases* rather than
+tags, so pushing a tag triggers nothing regardless of whether the webhook is on, and it only picks
+up releases created after it is enabled. Switch it on before cutting the release the paper cites —
+not before this one.

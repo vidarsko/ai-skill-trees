@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: AI Skill Trees
+message: >-
+  If you use this software or the material in it, please cite the tagged
+  release you used rather than the main branch.
+type: software
+authors:
+  - given-names: Vidar
+    family-names: Skogvoll
+    email: vidarsko@uio.no
+    affiliation: University of Oslo
+repository-code: https://github.com/vidarsko/ai-skill-trees
+url: https://aiskilltrees.com
+abstract: >-
+  A skill tree is a graph of the skills and concepts in one school subject,
+  written by a teacher, with an instruction on each node that a student copies
+  into an AI chat. This repository holds the rendering engine, the
+  instructions, the interface languages and the decomposition specification.
+keywords:
+  - education
+  - open educational resources
+  - prompt engineering
+  - prerequisite graph
+license: MIT
+license-url: https://github.com/vidarsko/ai-skill-trees/blob/main/README.md
+version: 0.1.0
+date-released: '2026-09-20'

@@ -1,0 +1,167 @@
+{
+  "code": "sv",
+  "htmlLang": "sv",
+  "name": "Svenska",
+  "endonym": "Svenska",
+  "_comment": "Alt som varierer med SPRÅK, i én fil. Legger du til et språk, er dette den ene fila som må skrives - engine.js, prompts/core.json og tre-mappene rører du ikke. Se AGENTS.md, «Ferdighetstrærne».",
+  "ui": {
+    "backLink": "← alla färdighetsträd",
+    "pageTitle": "Färdighetsträd för {title}",
+    "tagline": "En karta över hur färdigheter och begrepp bygger på varandra — kryssa i det du behärskar, och kopiera en AI-instruktion för att träna vidare.",
+    "progressLabel": "{done} av {total} färdigheter avklarade",
+    "zoomIn": "Zooma in",
+    "zoomOut": "Zooma ut",
+    "fitToView": "Visa hela trädet",
+    "fitToViewTitle": "Visa hela trädet (Ctrl+scroll för att zooma)",
+    "close": "✕ Stäng",
+    "closeLower": "✕ stäng",
+    "copied": "Kopierat!",
+    "copyFallback": "Det gick inte att kopiera automatiskt - kopiera texten nedan manuellt:",
+    "errorBanner": "⚠ {n} problem hittades i datafilerna (se konsolen för detaljer):",
+    "nodeType": {
+      "skill": "färdighet",
+      "concept": "begrepp"
+    },
+    "badges": {
+      "del1": "Del 1",
+      "del2": "Del 2",
+      "begge": "Del 1+2"
+    },
+    "status": {
+      "mastered": "Avklarad",
+      "ready": "Redo att läras",
+      "notMastered": "Inte avklarad än",
+      "blocked": "Saknas först: {codes}"
+    },
+    "help": {
+      "label": "Hur använder jag den här sidan?",
+      "heading": "Hur använder jag den här sidan?",
+      "sections": [
+        {
+          "id": "menuButton",
+          "heading": "Menyknappen",
+          "body": "Tryck på ☰-knappen längst ner till vänster, bredvid den här hjälpknappen, för att öppna en meny med tillbaka-länk, ljust/mörkt läge, ditt framsteg och de andra knapparna på sidan - förklarade nedan."
+        },
+        {
+          "id": "map",
+          "heading": "Kartan",
+          "body": "Kartan visar hur färdigheter och begrepp bygger på varandra, från det mest grundläggande till vänster till det mest sammansatta till höger. Rutorna du inte har förkunskaperna för än ser du som grå och låsta - kryssa i det som saknas först. Dra för att panorera kartan, och använd +/- eller mushjulet för att zooma."
+        },
+        {
+          "id": "clickBox",
+          "heading": "Klicka på en ruta",
+          "body": "När du klickar på en ruta får du upp förkunskaperna, en fullständig beskrivning av lärandemålet, och en AI-instruktion du kan kopiera och klistra in i en AI-chatt för att träna på just den färdigheten. Markera rutan som avklarad när du kan den - framstegen sparas i din webbläsare, och du kan ta bort markeringen igen när du vill."
+        },
+        {
+          "id": "goalIndex",
+          "heading": "«Visa alla lärandemål»",
+          "body": "När du trycker på den här knappen får du en samlad, systematisk lista över alla lärandemålen i ämnet, sorterad efter tema - praktiskt när du vill ha överblick eller läsa igenom hela listan utan att klicka dig igenom kartan. Varje lärandemål visar status: ✓ betyder att du markerat det som avklarat, ◇ att du har allt du behöver för att lära dig det nu, och ⊘ visar vilka lärandemål du bör ta först (med deras kod, t.ex. C1)."
+        },
+        {
+          "id": "lessonPlan",
+          "heading": "«Skapa lektionsplanering» (för lärare)",
+          "body": "Längst ner i «Visa alla lärandemål» kan lärare kryssa i de lärandemål nästa lektion ska täcka, ställa in lektionens längd, och få en AI-instruktion för en färdig lektionsplanering: starter, genomgång enligt example-problem pair-modellen, diagnostiska frågor och återkallning på slutet. Ikryssningarna för avklarat är dina egna, i din egen webbläsare - de visar vad du själv gått igenom, inte vad klassen faktiskt kan."
+        },
+        {
+          "id": "exam",
+          "heading": "«Skapa prov av avklarade färdigheter»",
+          "body": "När du trycker på den här knappen får du en AI-instruktion för ett prov som täcker ett urval av det du redan markerat som avklarat. Klistra in den i en AI-chatt för att testa dig själv över flera färdigheter samtidigt."
+        },
+        {
+          "id": "aids",
+          "heading": "Hjälpmedelsmärkningen",
+          "body": "Märkningen på en ruta visar vilken hjälpmedelsnivå färdigheten hör till — till exempel «Del 1» eller «Del 2». Är den delad i flera färger hör färdigheten till flera nivåer, och du bör klara den under den striktaste av dem. Klicka på märkningen för att öppna «Om ämnet», där varje nivå förklaras.",
+          "when": "feature:aids"
+        },
+        {
+          "id": "motivation",
+          "heading": "«Varför ska jag lära mig matte?»",
+          "body": "När du trycker på den här knappen får du en AI-instruktion för ett kort samtal om varför det är värt att lära sig ämnet överhuvudtaget. Klistra in den i en AI-chatt om du behöver en knuff i rätt riktning.",
+          "when": "feature:motivation"
+        }
+      ]
+    },
+    "goalIndex": {
+      "button": "Visa alla lärandemål",
+      "title": "Visa en systematisk lista över alla lärandemål, sorterad efter tema",
+      "heading": "Alla lärandemål",
+      "copyAll": "Kopiera alla",
+      "intro": "Listan visar alla lärandemål i ämnet, sorterade efter tema, med status för vart och ett. För lärare: kryssa i de lärandemål nästa lektion ska täcka, och skapa en färdig lektionsplanering längst ner.",
+      "openNode": "Gå till den här noden i kartan"
+    },
+    "motivation": {
+      "button": "Varför ska jag lära mig matte?",
+      "title": "Kopiera en AI-instruktion för ett samtal om varför det är värt att lära sig ämnet"
+    },
+    "lesson": {
+      "button": "Skapa lektionsplanering (för lärare)",
+      "title": "Kopiera en AI-instruktion för en färdig lektion om de lärandemål du kryssat i",
+      "minutesAria": "Lektionens längd i minuter",
+      "includeAria": "Ta med «{name}» i lektionsplaneringen",
+      "selectedNone": "Inga lärandemål valda",
+      "selectedOne": "1 lärandemål valt",
+      "selectedMany": "{n} lärandemål valda"
+    },
+    "exam": {
+      "button": "Skapa prov av avklarade färdigheter",
+      "title": "Kopiera en AI-instruktion för att skapa ett prov baserat på det du har markerat som avklarat",
+      "none": "Inga avklarade färdigheter än",
+      "countLabel": "Antal uppgifter",
+      "countAria": "Antal uppgifter i provet"
+    },
+    "node": {
+      "markMastered": "Markera som avklarad"
+    },
+    "column": {
+      "markAll": "Markera alla färdigheter i «{topic}» som avklarade",
+      "clearAll": "Ta bort avklarad-markering för alla färdigheter i «{topic}»"
+    },
+    "detail": {
+      "show": "Visa AI-instruktion",
+      "hide": "Dölj AI-instruktion",
+      "copy": "Kopiera AI-instruktion",
+      "prereqs": "Förkunskaper",
+      "examTasks": "Provuppgifter",
+      "mastered": "✓ Avklarad",
+      "available": "Tillgänglig — förkunskaperna är uppfyllda",
+      "locked": "Låst — saknar förkunskaper",
+      "empty": "Klicka på en nod i kartan för att se detaljer.",
+      "examLabel": "{season} {year}, {part}, uppgift {number}"
+    },
+    "loadError": "Kritiskt fel vid laddning: {message} (kör du sidan via en lokal server? fetch() av datafilerna misslyckas om index.html öppnas direkt från disk i många webbläsare.)",
+    "defaultTopic": "Övrigt",
+    "aids": {
+      "heading": "Hjälpmedel",
+      "tagTitle": "Se vad du får använda på den här nivån",
+      "multipleNote": "Den här färdigheten hör till flera nivåer. Du bör klara den under den striktaste av dem — alltså med minst hjälpmedel.",
+      "multipleNoteGeneral": "En färdighet kan höra till flera nivåer. Märkningen är då delad i flera färger, och du bör klara färdigheten under den striktaste av nivåerna — alltså med minst hjälpmedel."
+    },
+    "menu": {
+      "label": "Meny"
+    },
+    "courseInfo": {
+      "button": "Om ämnet",
+      "heading": "Om ämnet",
+      "course": "Ämne",
+      "division": "Årskurs eller fakultet",
+      "curriculum": "Läroplan",
+      "institution": "Institution",
+      "country": "Land",
+      "language": "Språk",
+      "size": "Omfattning",
+      "credits": "Skapad av",
+      "author": "Författare",
+      "updated": "Senast uppdaterad",
+      "license": "Licens",
+      "skills": "{n} färdigheter",
+      "concepts": "{n} begrepp",
+      "nodes": "{n} noder"
+    }
+  },
+  "prompt": {
+    "_comment": "Språklagret i AI-instruktionerna. Samma roll som languages/nb.json → prompt. Endast det som är SÄRSKILT FÖR SVENSKA hör hemma här: själva principerna (aktiv form, undvik skriftspråkliga ord) är språkoberoende och bor i prompts/shared.json → writingStyleGeneral. Formuleringarna är hämtade från den svenska systermotorn på skogvoll.com, inte nyöversatta.",
+    "outputLanguage": "För hela detta samtal på svenska. Allt som citeras från färdighetsträdet nedan — nodnamn, beskrivningar, förkunskaper — är skrivet på svenska, och eleven förväntar sig att bli tilltalad på svenska. Delar av instruktionen du nu läser är på engelska; dina svar ska ändå aldrig vara det. Byt inte till engelska vid något tillfälle, och kommentera inte vilket språk instruktionen är skriven på. Tilltala eleven som \"du\", och använd \"hen\" i stället för \"han/hon\" när du omtalar eleven i tredje person.",
+    "writingStyle": "Svenska exempel på de två råden ovan:\n- Aktiv form: skriv \"vi kan skriva talet som …\", inte \"talet kan skrivas som …\"; skriv \"vi gör detta genom att …\" eller \"du gör detta genom att …\", inte \"det görs genom att …\". Undvik \"görs\" och \"kan göras\" där du kan säga vem som gör det.\n- Ord som är vanliga på svenska men sällsynta i talspråk, skriftspråkliga eller lite för vuxna ska du byta ut mot ett enklare ord. Kompistestet: är det något du faktiskt skulle säga högt till en kompis?",
+    "overrides": {}
+  }
+}

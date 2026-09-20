@@ -1,0 +1,125 @@
+name: Tag and release on version bump
+
+# `version:` in CITATION.cff is the source of truth for which release this is.
+# Push a bump to main and this job creates the matching tag and GitHub Release,
+# with that version's CHANGELOG.md section as the release notes. Push anything
+# else and it does nothing: the tag already exists, so the job says so and
+# stops.
+#
+# WHY THIS EXISTS. The website pins a tag rather than tracking main, so every
+# change meant to reach aiskilltrees.com needs one. Creating that tag by hand
+# was the only step in the whole chain that could not be done from wherever the
+# work was done — a version number that is already written down, retyped into a
+# web form. The number is the decision; the tag is a consequence of it, and a
+# consequence belongs in a machine.
+#
+# It also enforces the thing that is easy to forget: a version with no section
+# in CHANGELOG.md fails the run, loudly, rather than shipping an unexplained
+# release. Zenodo archives RELEASES rather than tags, which is the other reason
+# this creates a release and not just a tag.
+
+# Quoted for the same reason as in the site's deploy workflow: in YAML 1.1 a
+# bare `on` parses as the boolean true, and editors validating against the
+# workflow schema then mark the file as missing its `on` key.
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout, with history and tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read the version, and see whether it is already released
+        id: version
+        run: |
+          set -euo pipefail
+          version="$(python3 - <<'PY'
+          import pathlib, re, sys
+          cff = pathlib.Path('CITATION.cff').read_text(encoding='utf-8')
+          m = re.search(r'''(?m)^version:[ \t]*['"]?([^\s'"]+)['"]?[ \t]*$''', cff)
+          if not m:
+              sys.exit('CITATION.cff has no `version:` line.')
+          print(m.group(1))
+          PY
+          )"
+          tag="v$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "$tag already exists — nothing to release."
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+            echo "$tag does not exist yet — releasing it."
+          fi
+
+      - name: Take the release notes from the changelog
+        if: steps.version.outputs.needed == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, pathlib, re, sys
+
+          version = os.environ['VERSION']
+          lines = pathlib.Path('CHANGELOG.md').read_text(encoding='utf-8').splitlines()
+
+          start = None
+          for i, line in enumerate(lines):
+              if re.match(r'^##\s+\[%s\]' % re.escape(version), line):
+                  start = i + 1
+                  break
+          if start is None:
+              sys.exit(
+                  'CHANGELOG.md has no `## [%s]` section.\n'
+                  '\n'
+                  'CITATION.cff says this is version %s, so the changelog has to say what '
+                  'changed in it. If the entries are still under `## [Unreleased]`, rename '
+                  'that heading to `## [%s] - YYYY-MM-DD` and push again.'
+                  % (version, version, version))
+
+          end = len(lines)
+          for i in range(start, len(lines)):
+              if lines[i].startswith('## '):
+                  end = i
+                  break
+
+          notes = '\n'.join(lines[start:end]).strip()
+          if not notes:
+              sys.exit('The `## [%s]` section in CHANGELOG.md is empty.' % version)
+
+          pathlib.Path(os.environ['RUNNER_TEMP'], 'notes.md').write_text(
+              notes + '\n', encoding='utf-8')
+          print(notes)
+          PY
+
+      - name: Create the tag and the release
+        if: steps.version.outputs.needed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Annotated, like v0.1.0 and v0.1.1, so `git describe` and the release
+          # date mean something. --verify-tag then makes gh use this tag rather
+          # than quietly creating a lightweight one of its own.
+          git tag -a "$TAG" -m "$TAG"
+          git push origin "refs/tags/$TAG"
+          gh release create "$TAG" \
+            --verify-tag \
+            --title "$TAG" \
+            --notes-file "$RUNNER_TEMP/notes.md"

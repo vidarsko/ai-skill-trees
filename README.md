@@ -54,6 +54,22 @@ Each instruction module in `prompts/` carries its own `version`, because they ar
 separately. Releases are tagged, and the website pins a tag rather than tracking `main`, so the
 version running on the site is always one that can be pointed at.
 
+**`version:` in `CITATION.cff` is the release number, and changing it is what makes a release.**
+A push to `main` that bumps it is picked up by `.github/workflows/release.yml`, which creates the
+tag `v<version>` and a GitHub Release whose notes are that version's section of `CHANGELOG.md`.
+A push that does not bump it does nothing, because the tag is already there. So there is no tag
+to remember to create, and no way for the number in the file and the tag in the repository to
+drift apart.
+
+That makes the changelog part of the release rather than a note about it. Entries accumulate
+under `## [Unreleased]` as work lands; bumping the version renames that heading to
+`## [<version>] - <date>` in the same commit. A version with no section of its own fails the run
+rather than publishing an unexplained release.
+
+Moving the *website* to a new release stays a deliberate step — `MACHINERY_REF` in its deploy
+workflow. Automating that as well would only be the site tracking `main` in a slower disguise,
+and the gap between the two is what gives a change somewhere to be looked at before it is live.
+
 ## Status
 
 Early, and moving. The engine, instructions and language files were extracted here from the

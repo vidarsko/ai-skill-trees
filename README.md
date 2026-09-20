@@ -57,8 +57,9 @@ version running on the site is always one that can be pointed at.
 ## Status
 
 Early, and moving. The engine, instructions and language files were extracted here from the
-website's private repository on 2026-09-20 and this is now where they are edited. Still to come:
-the downloadable starter folder, the submission forms and the mechanical validator.
+website's private repository on 2026-09-20, and this is now where they are edited — the site
+builds against a tag from here rather than holding its own copy. Still to come: the downloadable
+starter folder, the submission forms and the mechanical validator.
 
 Contributions are not open yet. When they are, a tree is submitted through a form rather than a
 pull request, and reviewed by hand before publication — the graph is meant to be teacher-written

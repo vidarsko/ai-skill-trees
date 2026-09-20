@@ -20,6 +20,14 @@ visible at aiskilltrees.com.
 
 ### Changed
 
+- `spec/decomposition.md` is now **v1.1.0**. Section 7 previously said, without qualification,
+  to hand the specification to an agent together with the curriculum. Section 8 governed what
+  may go into a published `nodes.csv` but nothing governed what may be handed to a model in
+  the first place, which is a separate act of copying. Section 7 now requires that question to
+  be settled first, notes that a curriculum is a regulation and free of copyright in Norway
+  and Sweden while a private examination body's syllabus is not, and gives the alternative:
+  the agent needs the specification and a topic list, not the source document. Section 8's
+  licensing point no longer names one organisation as its example.
 - Extracted from the private website repository `vidarsko/website_aiskilltrees_com_builder`,
   which is now downstream of this one: `engine/`, `prompts/`, `languages/` and `spec/` are edited
   here and synced to the site.
@@ -34,5 +42,11 @@ visible at aiskilltrees.com.
 First contents. The engine, the instruction modules, the three language files and the
 decomposition specification, moved here from the website repository.
 
-Note: this version has not been tagged yet. Tag it only after the Zenodo webhook is switched on —
-a tag created beforehand gets no DOI, and the paper cites the tag rather than the branch.
+This repository is public from the start. That was decided rather than drifted into: the website
+fetches a tag from here at deploy time, and a public repository needs no access token for that —
+so there is no credential with an expiry sitting between the two, and the failure mode of an
+expired token (a red workflow and a site that quietly stops updating) does not exist.
+
+**The tag has to be created before the site can deploy**, since the workflow pins `MACHINERY_REF`
+and a missing ref fails the run. Switch the Zenodo webhook on first: a tag created before the
+webhook is active gets no DOI, and the paper cites the tag rather than the branch.

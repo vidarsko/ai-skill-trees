@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [Unreleased]
+
+### Added
+
+- `.github/workflows/release.yml` — a push to `main` that bumps `version:` in `CITATION.cff` now
+  creates the tag `v<version>` and the GitHub Release by itself, with this file's section for
+  that version as the release notes. Creating the tag by hand was the only step in the chain
+  that had to happen somewhere other than where the work was done, and it was the one step with
+  no judgement in it: the version number is the decision, and the tag follows from it. A version
+  with no section here fails the run rather than publishing an unexplained release, which is the
+  check that was previously nobody's job. It creates a release and not merely a tag because
+  Zenodo archives releases.
+
 ## [0.1.2] - 2026-09-20
 
 ### Changed

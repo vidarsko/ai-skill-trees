@@ -7,6 +7,20 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.8.1] - 2026-09-21
+
+### Changed
+
+- **The line at the top left is shorter**: «Matematikk 2P. Lag ditt eget tre: aiskilltrees.com».
+  Vidar's wording again. The question it used to open with — «Liker du treet?» — asked the reader
+  for an opinion before telling them the one thing the line is there for, and a reader who does
+  *not* like the tree is not the reader the invitation is aimed at anyway. All three language
+  files changed; the mechanism is untouched.
+
+- **5px rather than 2px** between that line and the first column label, so the sentence reads as
+  its own line instead of as a caption on the labels below it. The canvas still has its own 12px,
+  so the change is in the negative margin that pulls the line back down over it.
+
 ## [0.8.0] - 2026-09-21
 
 ### Changed

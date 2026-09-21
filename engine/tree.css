@@ -272,13 +272,12 @@ header {
 .made-with {
   flex: 0 0 auto;
   margin: 0;
-  /* 5px ned til den første emneoverskriften, og det er regnestykket under:
-     lerretet har 12px egen luft (LAYOUT.padding), den gjelder alle fire
-     sidene og skal ikke krympes for å rette én av dem, så linja trekkes
-     7px opp igjen. line-height: 1 fjerner den halve linjeavstanden som
-     ellers ligger under teksten og gjør de 5px til noe annet enn 5px. */
+  /* line-height: 1 fjerner den halve linjeavstanden som ellers ligger under
+     teksten. De 5px ned til første emneoverskrift lages IKKE her: se
+     #graph-container, som trekker lerretet opp inne i rullefeltet i
+     stedet. Linja skal beholde hele sin egen høyde, ellers rulles grafen
+     opp i teksten. */
   padding: 0.5rem 2rem 0;
-  margin-bottom: -7px;
   font-size: 0.7rem;
   line-height: 1;
   color: var(--text-muted);
@@ -328,9 +327,17 @@ main {
   user-select: none;
 }
 
+/* margin-top: 5px ned til første emneoverskrift, og regnestykket er dette:
+   lerretet har 12px egen luft (LAYOUT.padding) som gjelder alle fire sidene
+   og ikke skal krympes for å rette én av dem, så lerretet trekkes 7px opp
+   INNE i rullefeltet. De 7px lå til 21.09 som negativ bunnmarg på
+   .made-with, og det var feil sted: da startet #graph-scroll 7px inne i
+   toppteksten, og nodekortene rullet opp over de nederste 7px av bokstavene
+   i stedet for å stoppe under dem. Her er det bare tomrommet øverst i
+   lerretet som beskjæres, og teksten står i fred. */
 #graph-container {
   position: relative;
-  margin: 0 auto;
+  margin: -7px auto 0;
   transform-origin: 0 0;
 }
 

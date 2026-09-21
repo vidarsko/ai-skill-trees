@@ -7,6 +7,21 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.9.1] - 2026-09-21
+
+### Fixed
+
+- **The top line no longer has the graph scrolled up over it.** The 5px down to the first topic
+  heading was made in 0.7.2 with a `margin-bottom: -7px` on `.made-with`, and that is the wrong
+  side to take it from: a negative bottom margin does not move the line, it moves everything
+  after it, so `#graph-scroll` began 7px INSIDE the text. At the top of the graph nothing showed,
+  because the canvas has 12px of its own air there. Scroll the map, though, and node cards rode
+  up into those 7px and cut the letters in half - reported by Vidar with a screenshot.
+
+  The same 7px now sits as `margin-top` on `#graph-container`, inside the scrolling box. What
+  gets trimmed is the empty top of the canvas rather than the bottom of the text, the gap at the
+  top of the graph is 5px as before, and cards now stop under the line instead of crossing it.
+
 ## [0.9.0] - 2026-09-21
 
 ### Added

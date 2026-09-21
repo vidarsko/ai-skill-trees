@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.7.1] - 2026-09-21
+
+### Fixed
+
+- **The gap between the new top line and the first column label was twice what it should be.**
+  Reported by Vidar with a screenshot. Two separate bits of air sat on top of each other:
+  `#graph-scroll` kept a 12px padding-top from when nothing was above the graph, and
+  `.made-with` added its own below the text — with `LAYOUT.padding` (another 12px, inside the
+  canvas) underneath both. The scroll container's top padding is gone and the line's bottom
+  padding with it; the canvas padding is what separates them now, which is the one that was
+  always meant to.
+
 ## [0.7.0] - 2026-09-21
 
 ### Added

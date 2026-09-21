@@ -7,6 +7,29 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.10.0] - 2026-09-21
+
+### Added
+
+- **Search, in the menu next to the list of learning goals.** A tree of eighty nodes has two ways
+  in: read the map, or read the list of learning goals sorted by topic. Both fail the same person
+  - the one who remembers a WORD from a node but not which topic it was filed under, and who then
+  has to read the whole list to find it again. Search is that third way in, and it is the one a
+  reader coming back to a tree they have used before actually wants.
+
+  It searches the description as well as the name, because the word someone remembers is more
+  often in the description than in the four-word title, and it marks every hit in place so the
+  reader can see WHY a node matched rather than having to open it. A result is a button, exactly
+  as in the list of learning goals: it closes the panel, scrolls the node into view with the same
+  pulse, and opens its detail panel. Enter jumps to the top hit.
+
+  Matching folds case and diacritics, so «sok» finds «søk» and «lare» finds «lære» - a teacher
+  typing quickly should not have to get the letter right. Several words all have to match, in any
+  of name, description or topic. Nodes matching on the NAME are listed first; everything else
+  keeps tree order, so the list is predictable rather than scored. The whole thing runs over the
+  nodes already in memory, so it works offline in a downloaded single-file tree like everything
+  else here.
+
 ## [0.9.1] - 2026-09-21
 
 ### Fixed

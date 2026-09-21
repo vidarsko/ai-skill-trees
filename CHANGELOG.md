@@ -7,6 +7,62 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.8.0] - 2026-09-21
+
+### Changed
+
+- **The `description` column no longer carries «The student can».** It was presentation stored
+  as data: the same three words in front of every row in every tree, untranslatable,
+  unstyleable, and in the way of the one thing the column is for. A description is now the bare
+  requirement — a verb phrase for a skill (`add two multi-digit numbers, including cases that
+  carry`), a definition for a concept (`The position of a digit decides what the digit is
+  worth.`) — and the engine prints the lead-in in front of it, in the tree's own language.
+
+  The two types get **different lead-ins**, because a definition is not a verb phrase and «The
+  student can: The position of a digit decides what the digit is worth» does not parse. A skill
+  gets «The student can:», a concept «The student can explain:», each on its own line above the
+  description and in the primary colour, so it reads as the tool's words rather than the
+  teacher's.
+
+  **This is a breaking change to the data format.** A tree written before this renders as «The
+  student can: The student can …». `tools/migrate-descriptions.py` does the mechanical half and
+  names every row it did not dare touch; the rest is a reading job, and there is no way around
+  that — stripping a prefix off a sentence that continues «…, and knows why it works» produces
+  something that is still wrong, just less visibly.
+
+- **A concept node may define several concepts**, one per line in the cell, written as
+  `Term: definition` with a real line break inside the quoted field. `Intron and exon` is one
+  box in the map and two definitions, and it used to be written as a single sentence about the
+  difference between them. The engine splits on the line break and on nothing else, so a
+  definition may contain colons and semicolons; the term is only read off a line when the node
+  has more than one, and the list is rendered with each term in bold.
+
+  The matching rule in the specification: **a difference between two concepts is a skill, not
+  part of a definition.** Knowing two definitions and being able to say what separates them are
+  different things, and the second is work — the same argument that sends procedural work out of
+  a concept node and into a skill that depends on it.
+
+- **`goal` in the practice tutor is now three sections**, `goal`, `goalSkill` and `goalConcept`,
+  with `goalConceptMultiple` added when the node really does hold several definitions. The
+  instruction has to complete the same sentence the panel does, and it cannot do that in one
+  text that has to serve both types. A `prompt` row naming `goal` still works and now replaces
+  the framing only.
+
+### Added
+
+- **`learner`: `pupil`, `student` or `participant`** — what the person learning is *called*. A
+  pupil at school and a student at university are the same thing in the tree and different in
+  every sentence about it, and Norwegian will not let one word cover both. Only the key goes in
+  `tree.csv`; the inflected forms and both lead-ins live in `languages/<code>.json`, because
+  inflection is something that varies with language and a teacher should not have to write
+  grammar in a spreadsheet. Each language has its own default — school in Norwegian and Swedish,
+  university in English — and an unknown value is reported with its row and a guess, like any
+  other setting.
+
+  The word reaches the instructions as `{learner}`, `{learnerDefinite}`, `{learners}` and
+  `{learnersDefinite}`, available in the language layer and in a `prompt` row — but **not** in
+  `prompts/`, which is English and would end up saying «helping eleven practise».
+
 ## [0.7.2] - 2026-09-21
 
 ### Fixed

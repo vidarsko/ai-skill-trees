@@ -7,6 +7,30 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.7.0] - 2026-09-21
+
+### Added
+
+- **A tree now says what it is and where it came from, on one line at the top left**: «Matematikk
+  2P. Liker du treet? Lag ditt eget: aiskilltrees.com». Vidar's wording. It sits in the flex
+  column before `<main>`, so the graph loses exactly the height the line takes and nothing
+  overlaps; the left margin is `#graph-scroll`'s, so it stands directly above the first column
+  label, at that label's size but without the caps and letter-spacing — it is a sentence, not a
+  tag.
+
+  **The point is the downloaded single file.** A tree a teacher builds and mails to a class is
+  one HTML file with no catalogue around it and no back link anywhere; until now it said nothing
+  about where it came from or that the reader could build one. That is why the line is in
+  `engine/standalone.html` as well as `engine/index.html`, and why the address is absolute.
+
+  The text is `ui.makeYourOwn` in `languages/<code>.json` like every other string the engine
+  shows, so it stands in the tree's own language. The domain is not part of it: an address is
+  not a translation, so the engine appends it as the link text, pointing at
+  aiskilltrees.com/make-your-own/ — the page the sentence promises.
+
+  A deployment's per-tree pages are copies of `engine/index.html`, so they need re-copying;
+  `tools/sync-engine.sh --check` in the website repository reports the drift by name.
+
 ## [0.6.0] - 2026-09-21
 
 ### Changed

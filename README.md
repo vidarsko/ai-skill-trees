@@ -50,6 +50,14 @@ the tops of the columns form a staircase and the tree reads left to right in
 the order the subject can be taken. Any of the three can still be given
 explicitly, and an explicit value always wins.
 
+## Where a deployment serves this
+
+The folder names here are the names in the repository. A site that deploys this serves them
+under **`/assets/`** — `/assets/engine/engine.js`, `/assets/prompts/manifest.json` and so on —
+and the engine asks for exactly those paths. The prefix exists so that a page can be called
+`/prompts/` without colliding with the machinery, and it says the useful thing about everything
+behind it: these are files the pages load, not pages anyone visits.
+
 ## The three layers
 
 Text is split by what it varies with, not by file type.

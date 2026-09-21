@@ -7,6 +7,30 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.4.0] - 2026-09-21
+
+### Changed
+
+- **The machinery is published under `/assets/`.** `/assets/engine/`,
+  `/assets/prompts/`, `/assets/languages/`, `/assets/starter/`. The folder names in this
+  repository are unchanged — only the URLs a deployment serves them at — so nothing that cites
+  `prompts/decomposition.json` moves.
+
+  The reason is a collision: aiskilltrees.com wants `/prompts/` for a page that shows the
+  instructions to a teacher, and that path was the machinery's. The general fix is a prefix that
+  says *files the pages load, rather than pages you visit*, which is what `assets` has meant on
+  the web for twenty years. Putting all four directories behind it means the next page name
+  cannot collide either.
+
+  Two names were rejected. `_assets/` reads as "internal" to a developer, but GitHub Pages runs
+  Jekyll, which **drops** directories beginning with an underscore — the machinery would have
+  vanished from the published site with no error anywhere. `/method/` describes the contents
+  well and is exactly wrong for the purpose: it reads like a page, which is the confusion being
+  fixed.
+
+  A deployment that serves the machinery from the old paths needs to move it, or to serve
+  `/assets/` as an alias. The engine asks for the new paths and nothing else.
+
 ## [0.3.0] - 2026-09-21
 
 ### Changed

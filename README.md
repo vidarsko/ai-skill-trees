@@ -40,7 +40,9 @@ Config rows go at the top, before the nodes. `tree.json` is gone as of 0.2.0.
 **The names a `prompt` row takes are the ones in `prompts/`**: the instruction's own key from
 `manifest.json` — `node`, `exam`, `motivation`, `lessonPlan` — and a section id from that
 instruction's `order`. A deployment publishes them all, section by section, at
-[aiskilltrees.com/prompts/](https://aiskilltrees.com/prompts/). A section or instruction name
+[aiskilltrees.com/prompts/](https://aiskilltrees.com/prompts/), and a composed instruction prints
+each section with its keyword in front of it — `tone: …` — so the name is also readable off the
+instruction itself. A section or instruction name
 that does not exist is an error, reported with its row and a guess at what was meant — for the
 same reason an unknown setting is: in a spreadsheet, silence is the dangerous response.
 

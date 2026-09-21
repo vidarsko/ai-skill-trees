@@ -7,6 +7,42 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.6.0] - 2026-09-21
+
+### Changed
+
+- **Every composed instruction now names its parts: `role: …`, `tone: …`, `mastery: …`.** One
+  line in `composePrompt()`, and it does two jobs at once. The model gets the structure XML tags
+  would have given it, without the instruction looking like code to the teacher or student
+  pasting it in — Vidar's call, and the reason the tags were rejected. And the teacher can read
+  the keyword for a `prompt` row straight off the instruction their own students are given,
+  rather than looking it up anywhere.
+
+  The keywords are English and camelCase, like everything else under `prompts/`, so a Norwegian
+  student sees `writingStyleGeneral:` in front of Norwegian prose. That is the same English
+  keyword the `name` column of a `prompt` row already takes, so the two agree; it is new that a
+  student sees them. Sections the subject family adds are prefixed the same way, since they are
+  sections like any other.
+
+  `/prompts/` does **not** show the prefix: the keyword is already the left-hand column of the
+  half-table there, and the prefix is added when the instruction is composed rather than stored
+  in the section text, so the page needed no exception.
+
+- **`prompts/decomposition.json` (v2.2.0) has the same shape as every other module now**:
+  `order` and `sections`, nothing else. Its `intro` is a section called `about`, first in
+  `order`, and its `titles` table is gone. It was the last asymmetry left over from
+  `spec/decomposition.md` — the one module with a preamble and a parallel table of human names
+  for its sections, which nothing else had and which had to be kept in step by hand.
+
+  The eighteen cross-references inside it went with the titles: `section 4` meant the fourth
+  numbered heading, and there are no numbered headings any more. They now name the keyword —
+  «the central rule in `whichConcepts`», «This is why `cohort` comes first» — which is both
+  stable under reordering and the same name the reader sees in front of the section.
+
+- `prompts/authoring.json` (**v1.3.0**) says that the keyword is printed in front of each part
+  of the instruction, so the teacher knows the name is there to be read. The decomposition
+  model's data-model section says the same where it explains a `prompt` row.
+
 ## [0.5.0] - 2026-09-21
 
 ### Added

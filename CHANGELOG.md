@@ -7,6 +7,41 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.9.0] - 2026-09-21
+
+### Added
+
+- **`slots.courseSpecifics` — one setting that reaches every instruction a student is given.**
+  Until now a teacher could rewrite ONE section of ONE instruction with a `prompt` row, or add to
+  ONE node with the `instruction` column. What there was no way to say was something true of the
+  whole course: that its skills are practised on real people and cannot be drilled in a chat, that
+  a tick means the reader has tried something rather than answered a question about it, that a
+  tool the course forbids must not be suggested. Saying it four times, once per instruction, is
+  four things to keep in step, and a teacher who writes it in only two gets a tree that
+  contradicts itself depending on which button the reader pressed.
+
+  The setting is **empty by default**, and a tree that does not set it composes exactly the text
+  it composed before — this is an addition to the schema, not a change to any existing tree.
+  Where it is set, the text is carried unchanged into the practice tutor, the test generator, the
+  motivation dialogue and the lesson-plan generator, under the keyword `courseSpecifics`, and it
+  says in so many words that it wins over the default where the two disagree.
+
+  It is a **shared section**, held once in `prompts/shared.json`, for the reason that file exists:
+  the wording around the teacher's own text is identical in all four instructions, so there is
+  nothing for a module to say differently. Its place in `order` is directly after
+  `languageSwitch`, before each instruction's own substance, so the model reads what is true of
+  the course before it is told what to do in it.
+
+  A `prompt` row aimed at `courseSpecifics` switches the section on too, not only the setting.
+  Without that, a teacher who found the keyword on aiskilltrees.com/prompts/ and wrote the row
+  rather than the setting would have had it read, echoed back as a setting, and then silently do
+  nothing — which is the failure `validatePromptRows()` exists to prevent, and it would have
+  been reintroduced by the one section most likely to be written that way.
+
+  `prompts/shared.json` 1.1.0 → 1.2.0, `practice-tutor.json` 1.2.0 → 1.3.0,
+  `test-generator.json`, `motivation.json` and `lesson-plan.json` 1.1.0 → 1.2.0, and
+  `decomposition.json` 2.4.0 → 2.5.0 for the settings table.
+
 ## [0.8.1] - 2026-09-21
 
 ### Changed

@@ -233,6 +233,13 @@ function definitionTerm(line) {
 /* ------------------------------------------------------------------ */
 
 const SECTION_WHEN = {
+  /* Lærerens egen tekst om kurset. Den står i alle fire instruksene og er
+     tom by default: et tre som ikke setter slotten skal se ut nøyaktig som
+     før. Se courseSpecificsApplies(). */
+  'node.courseSpecifics':       ctx => courseSpecificsApplies('node'),
+  'exam.courseSpecifics':       ctx => courseSpecificsApplies('exam'),
+  'motivation.courseSpecifics': ctx => courseSpecificsApplies('motivation'),
+  'lessonPlan.courseSpecifics': ctx => courseSpecificsApplies('lessonPlan'),
   'node.expression':         ctx => !!slot('expressionFocus'),
   'node.prerequisites':      ctx => ctx.ancestors && ctx.ancestors.length > 0,
   'node.prerequisitesNone':  ctx => !ctx.ancestors || ctx.ancestors.length === 0,
@@ -261,6 +268,17 @@ const SECTION_WHEN = {
 
 function slot(name) {
   return (CONFIG.slots || {})[name];
+}
+
+/* Seksjonen vises når treet HAR noe å si: enten via `slots.courseSpecifics`,
+   som er den vanlige veien, eller via en prompt-rad som skriver om selve
+   seksjonen. Uten det andre leddet ville en slik rad blitt lest, vist tilbake
+   som en innstilling, og så aldri gjort noe - nøyaktig den stillheten
+   validatePromptRows() finnes for å hindre. */
+function courseSpecificsApplies(promptName) {
+  return !!slot('courseSpecifics') ||
+         PROMPT_ROWS[promptName + '.courseSpecifics'] != null ||
+         PROMPT_ROWS['*.courseSpecifics'] != null;
 }
 
 /* Tilleggene fagfamilien bidrar med til ÉN instruks, som en liste av
@@ -559,6 +577,7 @@ const CONFIG_KEYS = [
   'course', 'curriculum', 'author', 'authorUrl', 'license',
   'features.motivation', 'features.exams',
   'slots.courseName', 'slots.motivationSubject', 'slots.expressionFocus',
+  'slots.courseSpecifics',
   'aids.label',
 ];
 const CONFIG_KEY_PATTERNS = [

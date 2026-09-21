@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.10.2] - 2026-09-21
+
+### Changed
+
+- **The base edge is back at 15% of the ink colour, after a day at 10%.** 0.10.1 left it at 15%,
+  10% was tried on the same afternoon, and 15% is what stands. Below that the structure stops
+  being sensed at all on a light background: the point of the faint line is that the shape of the
+  tree is still THERE for anyone who looks for it, not that it disappears. The two lifted states
+  are untouched, so the gap between a plain edge and a live one is unchanged.
+
 ## [0.10.1] - 2026-09-21
 
 ### Changed

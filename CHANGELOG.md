@@ -7,6 +7,29 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.10.1] - 2026-09-21
+
+### Changed
+
+- **The edges are faint by default, and two things bring one back.** A tree of eighty nodes draws
+  several hundred curves, and at full strength they read as a tangle laid over the columns rather
+  than as structure - the map got harder to use the more of it there was. The base line is now
+  light enough that the shape is sensed without competing with the boxes.
+
+  An edge that leaves a node the learner has CHECKED OFF is drawn darker, because those are the
+  edges pointing at what can be started now. That replaces the old rule, which lit an edge only
+  when BOTH ends were mastered - a state showing where the learner has already been rather than
+  where they can go next, and the one thing on the map nobody needs help finding.
+
+  An edge touching the node open in the detail panel is drawn in the primary green, in or out. It
+  answers a different question from the first - «what connects to THIS one?» rather than «where am
+  I?» - and it has to be followable across the whole map, so those paths are also moved last in
+  the `<svg>`. SVG has no `z-index`: document order is what decides, and a green line left where it
+  was drawn disappears under the grey ones around it.
+
+  Colour is never the only signal. The selected node still carries `.active`, and a mastered node
+  still has its own ring and a checked box.
+
 ## [0.10.0] - 2026-09-21
 
 ### Added

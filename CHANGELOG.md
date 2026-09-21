@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.4.1] - 2026-09-21
+
+### Fixed
+
+- `prompts/decomposition.json` is **v2.0.1**: eight sections ended with a stray `---`. They were
+  the horizontal rules that separated the sections while this was a markdown file, and the
+  conversion in 0.3.0 carried them into the section bodies, where they mean nothing. They showed
+  up on aiskilltrees.com/prompts/ and, worse, in the middle of the instruction a teacher pastes
+  into a chat.
+
 ## [0.4.0] - 2026-09-21
 
 ### Changed

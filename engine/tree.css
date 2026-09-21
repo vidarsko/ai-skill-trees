@@ -1318,4 +1318,7 @@ body {
 
 #detail-desc .definition-list li { margin-bottom: 0.4rem; }
 #detail-desc .definition-list li:last-child { margin-bottom: 0; }
-#detail-desc .definition-list strong { color: var(--text); }
+/* Termen står i samme farge som brødteksten ellers, bare i halvfeit: den
+   skal skille seg fra definisjonen, ikke fra siden. Gjelder både avsnittet
+   med én definisjon og punktlista med flere. */
+#detail-desc strong { color: var(--text); }

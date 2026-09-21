@@ -129,9 +129,139 @@ def migrate_concept(text):
     return None, 'ukjent innledning på et begrep'
 
 
+# --- Definisjonsetiketten ---------------------------------------------------
+# Et begrep skrives som «Term: definisjon», én linje per begrep - også når
+# noden bare definerer ett. Uten den regelen ser to nabobokser helt ulike ut
+# for den som leser dem etter hverandre, og det er lesningen formatet er til
+# for. Termen er nodens eget navn: den står allerede i overskriften, og å
+# gjenta den er billigere enn å la leseren gjette hva setningen definerer.
+LABELLED = re.compile(r'^[^:]{1,60}:\s')
+
+# «Kvadratroten av et tall er det positive tallet …» -> «det positive tallet
+# …». Innledningen sier hva som defineres, og det er nettopp det etiketten
+# skal si; blir den stående, står det to ganger. Er verbet et annet enn «er»,
+# blir det stående - «Coulombs lov beskriver hvordan …» -> «beskriver hvordan
+# …» - fordi det da bærer betydning.
+COPULA = {'er', 'var', 'betyr', 'innebærer', 'är', 'betyder', 'is', 'are', 'means'}
+MODALS = {'har', 'kan', 'må', 'skal', 'vil', 'bør', 'blir', 'ble', 'har', 'has', 'can', 'consists'}
+
+
+def looks_like_verb(word):
+    """Finitt verb i den posisjonen vi leter i. Norsk presens ender på -r
+    («oppstår», «ordner») og passiv på -s («brukes», «regnes»); i akkurat
+    posisjonen etter subjektet er et slikt ord så godt som alltid verbet."""
+    w = word.lower().strip('.,;:()')
+    if w in COPULA or w in MODALS:
+        return True
+    return len(w) > 3 and (w.endswith('r') or w.endswith('s')) and w.isalpha()
+
+
+def strip_subject(text, name):
+    """«en velferdsstat sikrer innbyggerne …» -> «sikrer innbyggerne …», og
+    «halveringstiden til et stoff er tiden …» -> «tiden …».
+
+    Subjektet gjentar termen etiketten allerede sier, og skal vekk; verbet
+    blir stående med mindre det er et «er», som ikke bærer noe. Står det noe
+    mellom termen og verbet som ikke er en preposisjonsfrase - et innskudd
+    med komma eller parentes - rører vi ingenting: da er det innhold i det,
+    og det skal en leser se på."""
+    tokens = text.split()
+    i = 0
+    if tokens and tokens[i].lower() in ARTICLES:
+        i += 1
+    if i >= len(tokens) or not same_term(tokens[i], name):
+        return None
+    i += 1
+    start = i
+    while i < len(tokens) and i - start < 6 and not looks_like_verb(tokens[i]):
+        if re.search(r'[,()]', tokens[i]):
+            return None
+        i += 1
+    if i >= len(tokens) or i - start >= 6:
+        return None
+    verb = tokens[i].lower()
+    rest = tokens[i + 1:] if verb in COPULA else tokens[i:]
+    return ' '.join(rest) or None
+
+DANGLING_CAN = re.compile(r',?\s+og\s+(?:kan|kjenner|vet)\b|,?\s+och\s+kan\b|,?\s+and\s+can\b', re.I)
+
+
+ARTICLES = {'en', 'et', 'ei', 'den', 'det', 'de', 'to', 'a', 'an', 'the'}
+
+
+def stem(word):
+    """Nok av ordet til å kjenne det igjen bøyd: «kvadratrot» ~ «kvadratroten»."""
+    word = re.sub(r'[^0-9A-Za-zÆØÅæøåÄÖäöéèüÜ-]', '', word).lower()
+    return word[:max(4, len(word) - 3)]
+
+
+def first_content_word(text):
+    """Første ord som ikke er en artikkel. «De tolv prinsippene» -> «tolv»."""
+    words = re.findall(r"[\wÆØÅæøåÄÖäö'’-]+", text)
+    while words and words[0].lower() in ARTICLES:
+        words.pop(0)
+    return words[0] if words else ''
+
+
+def same_term(a, b):
+    """Samme ord, uansett hvilken av dem som er bøyd: «halveringstid» ~
+    «halveringstiden». Stammene er ulikt lange, så det er den ene som må
+    begynne på den andre - ikke likhet."""
+    a, b = stem(first_content_word(a)), stem(first_content_word(b))
+    return bool(a) and bool(b) and (a.startswith(b) or b.startswith(a))
+
+
+def proper_words(rows):
+    """Ord som står med stor bokstav MIDT i en setning et sted i fila, og som
+    derfor ikke skal settes med liten når de havner først i en definisjon.
+    Utledet av treet selv, så det virker på et hvilket som helst fag.
+
+    Setningen må deles først: «Et» etter et punktum er ikke et egennavn, og
+    tas hele lista med, blir den ubrukelig nettopp for de ordene som oftest
+    står først."""
+    found = set()
+    for row in rows:
+        if len(row) < 5 or row[1] not in ('skill', 'concept'):
+            continue
+        for line in row[4].split('\n'):
+            for sentence in re.split(r'[.!?:;]\s+|\s+[-–—]\s+', line):
+                words = re.findall(r"[\wÆØÅæøåÄÖäö'’-]+", sentence)
+                for w in words[1:]:
+                    if w[:1].isupper():
+                        found.add(w)
+    return found
+
+
+def label_concept(name, text, proper):
+    """-> (ny tekst, grunn til å la den ligge)"""
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    if not lines:
+        return None, 'tom beskrivelse'
+    if all(LABELLED.match(l) for l in lines):
+        return None, None                      # allerede på forma
+    if len(lines) > 1:
+        return None, 'flere linjer, men ikke alle er merket med en term'
+    if DANGLING_CAN.search(lines[0]):
+        return None, 'ferdighetspåstand hektet på definisjonen - må leses'
+    if re.search(r'\b(og|och|and)\b', name):
+        return None, 'navnet holder flere termer - definer hver for seg'
+
+    rest = lines[0]
+    stripped = strip_subject(rest, name)
+    if stripped:
+        rest = LEADING_THAT.sub('', stripped)
+    if not rest:
+        return None, 'ingenting igjen etter innledningen'
+    first = rest.split()[0].strip('(«"')
+    if first not in proper and first[1:].islower() and first.isalpha():
+        rest = lower_first(rest)
+    return name.strip() + ': ' + rest, None
+
+
 def migrate_rows(rows):
     """-> (nye rader, [(rad, id, type, grunn, tekst)])"""
     out, left = [], []
+    proper = proper_words(rows)
     for i, row in enumerate(rows):
         row = list(row)
         kind = row[1].strip().lower() if len(row) > 1 else ''
@@ -139,14 +269,19 @@ def migrate_rows(rows):
             out.append(row)
             continue
         text = row[4].strip()
-        if already_migrated(text):
-            out.append(row)
-            continue
-        new, why = migrate_skill(text) if kind == 'skill' else migrate_concept(text)
-        if new is None:
-            left.append((i + 1, row[0], kind, why, text))
-        else:
-            row[4] = new
+        if not already_migrated(text):
+            new, why = migrate_skill(text) if kind == 'skill' else migrate_concept(text)
+            if new is None:
+                left.append((i + 1, row[0], kind, why, text))
+                out.append(row)
+                continue
+            row[4] = text = new
+        if kind == 'concept':
+            new, why = label_concept(row[3], text, proper)
+            if why:
+                left.append((i + 1, row[0], kind, why, text))
+            elif new:
+                row[4] = new
         out.append(row)
     return out, left
 

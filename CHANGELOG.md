@@ -44,12 +44,18 @@ visible at aiskilltrees.com.
   that — stripping a prefix off a sentence that continues «…, and knows why it works» produces
   something that is still wrong, just less visibly.
 
-- **A concept node may define several concepts**, one per line in the cell, written as
-  `Term: definition` with a real line break inside the quoted field. `Intron and exon` is one
-  box in the map and two definitions, and it used to be written as a single sentence about the
-  difference between them. The engine splits on the line break and on nothing else, so a
-  definition may contain colons and semicolons; the term is only read off a line when the node
-  has more than one, and the list is rendered with each term in bold.
+- **Every concept is written `Term: definition`**, one line per concept, whether the node
+  defines one or four. A node may define several - `Intron and exon` is one box in the map and
+  two definitions, written on two lines with a real line break inside the quoted field. The
+  engine splits on the line break and on nothing else, so a definition may contain colons and
+  semicolons: only what stands before the first colon on a line is read as the term, and it is
+  printed in bold.
+
+  The label was optional for a single definition at first, on the argument that the node's name
+  already carries the term. Seeing it on the page settled it the other way (Vidar, same day):
+  a node with one definition and a node with three then looked like two different formats to
+  anyone reading them one after the other, and it is that reading the format exists for. The
+  word is repeated; the page is consistent.
 
   The matching rule in the specification: **a difference between two concepts is a skill, not
   part of a definition.** Knowing two definitions and being able to say what separates them are

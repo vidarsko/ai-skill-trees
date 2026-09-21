@@ -214,9 +214,11 @@ function descriptionInline(text) {
   return descriptionLines(text).join('; ');
 }
 
-/* «Term: definisjon» → termen, når linja ser sånn ut. Bare i en node med
-   FLERE linjer: en enkelt definisjon som tilfeldigvis har et kolon i seg
-   skal ikke få halve setningen satt i halvfeit. */
+/* «Term: definisjon» → termen, når linja ser sånn ut. Alle begreper skrives
+   på den forma, også de som definerer bare ett - ellers ser to nabonoder
+   helt ulike ut for leseren, og det var det som gjorde at regelen ble
+   utvidet (Vidar, 2026-09-21). En ferdighet har ingen term, og en linje
+   uten kolon settes som den er. */
 function definitionTerm(line) {
   const m = /^([^:]{1,60}):\s+(.+)$/.exec(line);
   return m ? { term: m[1], rest: m[2] } : null;
@@ -2899,30 +2901,26 @@ function renderDetail(node) {
 
   const desc = document.createElement('div');
   desc.id = 'detail-desc';
-  if (descLines.length > 1) {
-    /* Flere definisjoner i én node: én per linje, termen i halvfeit der
-       linja har en. Punktliste, fordi de er sidestilte - ikke én tekst. */
-    const ul = document.createElement('ul');
-    ul.className = 'definition-list';
-    descLines.forEach(line => {
-      const li = document.createElement('li');
-      const parts = definitionTerm(line);
-      if (parts) {
-        const term = document.createElement('strong');
-        term.textContent = parts.term;
-        li.appendChild(term);
-        li.appendChild(document.createTextNode(': ' + parts.rest));
-      } else {
-        li.textContent = line;
-      }
-      ul.appendChild(li);
-    });
-    desc.appendChild(ul);
-  } else {
-    const only = document.createElement('p');
-    only.textContent = descLines[0] || '';
-    desc.appendChild(only);
-  }
+  /* Termen i halvfeit, definisjonen etter - likt enten noden definerer ett
+     begrep eller fire. Flere blir en punktliste, fordi de da er sidestilte;
+     én blir et avsnitt, fordi et kulepunkt alene bare er et kulepunkt
+     alene. Typografien er den samme i begge tilfeller. */
+  const list = descLines.length > 1 ? document.createElement('ul') : null;
+  if (list) list.className = 'definition-list';
+  descLines.forEach(line => {
+    const holder = document.createElement(list ? 'li' : 'p');
+    const parts = definitionTerm(line);
+    if (parts) {
+      const term = document.createElement('strong');
+      term.textContent = parts.term;
+      holder.appendChild(term);
+      holder.appendChild(document.createTextNode(': ' + parts.rest));
+    } else {
+      holder.textContent = line;
+    }
+    (list || desc).appendChild(holder);
+  });
+  if (list) desc.appendChild(list);
   inner.appendChild(desc);
 
   /* Hjelpemiddelforklaringen ligger IKKE her, men i kursinfo-vinduet:

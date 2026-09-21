@@ -7,6 +7,31 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.4.2] - 2026-09-21
+
+### Changed
+
+- **Both teacher instructions now point at the published instructions.** `prompts/authoring.json`
+  is **v1.1.0** and `prompts/decomposition.json` is **v2.1.0**.
+
+  The gap was specific. Both told a teacher that any section of the default instruction can be
+  overruled with a `prompt` row, and the data model said which columns the row uses — but
+  neither said where the instruction and section names come from. The only example was the one
+  in the schema (`,prompt,node,tone,…`), so a teacher, or the model helping them, had to guess
+  `node`, `exam`, `motivation`, `lessonPlan` and every section id from it. Those names are
+  published in full at aiskilltrees.com/prompts/, one card per instruction with every section
+  listed under the keyword that names it, which is exactly the keyword the row takes.
+
+  Both files now say so, and say the thing that makes it matter: **a `prompt` row naming a
+  section that does not exist is read, reported back as a setting, and then never used — no
+  error anywhere.** That is the one place this format is silent where it should not be, and the
+  reason is worth knowing rather than fixing blind: the engine only ever looks up section ids
+  that an instruction's `order` names, so an unknown id is never consulted. Reporting it would
+  mean validating the CSV against every instruction's section list at load time. Not done here.
+
+  The decomposition model also gained a step 11 in the checklist — read what your students will
+  actually be told — and the README gained the same pointer next to the row table.
+
 ## [0.4.1] - 2026-09-21
 
 ### Fixed

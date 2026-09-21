@@ -7,6 +7,15 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.7.2] - 2026-09-21
+
+### Fixed
+
+- **The gap under the top line, once more, tighter.** What was left after 0.7.1 was
+  `LAYOUT.padding` — the canvas's own 12px, which applies to all four sides and is not the place
+  to fix one of them. The line is pulled closer instead, with a negative bottom margin and a
+  slightly tighter line-height, so the canvas keeps the padding it needs everywhere else.
+
 ## [0.7.1] - 2026-09-21
 
 ### Fixed

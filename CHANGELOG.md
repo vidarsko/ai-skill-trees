@@ -7,6 +7,41 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.3.0] - 2026-09-21
+
+### Changed
+
+- **The decomposition model is a prompt module now, and `spec/` is gone.** It was
+  `spec/decomposition.md`: the one contribution out of five that had a different shape, a
+  different kind of version and a different home. It is now `prompts/decomposition.json`
+  (**v2.0.0**), sectioned like the other four, and the folder that held it no longer exists.
+
+  The version is a major bump because the model's output changed with the format: it described
+  `nodes.csv`, and a tree is now one `tree.csv` with its settings at the top. Section 3 gained
+  the settings table and an example with the `config` and `prompt` rows in it; the checklist
+  gained the step of opening the file in the builder.
+
+- **`audience` in the manifest** says who an instruction is for. `student` for the four the
+  engine composes, `teacher` for the two a person building a tree uses. The engine loads only
+  the first kind — fetching the others on every tree page would cost every reader 20 kB of text
+  no student will ever see.
+
+### Added
+
+- **`prompts/authoring.json`** — the instruction a teacher pastes into an AI chat to build a
+  tree. It wraps the decomposition model with what the method cannot assume the model knows:
+  what the teacher actually wants, what the site does with the file, that the teaching
+  instructions themselves may be overruled with a `prompt` row, how to come back later with the
+  file and change one thing, what each error message means, and that a tree where almost every
+  node has no prerequisites means the work was not done.
+
+  It exists because a teacher should do exactly what a student does — paste one instruction into
+  whichever chat they already use, and be taken through the work. That makes the method
+  self-similar, and it is why the text is a versioned module here rather than prose on one
+  website.
+
+  `spec/authoring-prompt.md` from 0.2.0 is replaced by it.
+
 ## [0.2.0] - 2026-09-20
 
 The file format changed: a tree is now one spreadsheet. This breaks every

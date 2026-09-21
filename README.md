@@ -15,10 +15,9 @@ student pastes it into whichever chat they already use.
 | Path | What it is | Licence |
 |---|---|---|
 | `engine/` | `engine.js`, `tree.css`, `tokens.css` and the per-tree page template. No user-facing text. | MIT |
-| `prompts/` | The instructions, in English. One file per contribution, each separately versioned. | CC BY-SA 4.0 |
+| `prompts/` | The instructions, in English. One file per contribution, each separately versioned — including `decomposition.json`, how a subject is broken into nodes, and `authoring.json`, the instruction a teacher pastes into a chat to build one. | CC BY-SA 4.0 |
 | `prompts/subjects/` | What is true for one subject family but not another. Adds sections; does not replace them. | CC BY-SA 4.0 |
 | `languages/` | Everything that varies with language: interface strings, and the language layer in the instructions. | CC BY-SA 4.0 |
-| `spec/` | `decomposition.md` — how a subject is broken into nodes — and `authoring-prompt.md`, the short version a teacher pastes into a chat. | CC BY-SA 4.0 |
 | `starter/` | `tree.csv` — a tiny working tree that doubles as the format's documentation. | CC BY-SA 4.0 |
 
 Two licences, split by what the file is: `LICENSE` (MIT) covers code, `LICENSE-CONTENT`
@@ -79,7 +78,9 @@ language. Low threshold to enter, a ceiling that rises once someone writes that 
 ## Versioning
 
 Each instruction module in `prompts/` carries its own `version`, because they are cited
-separately. Releases are tagged, and the website pins a tag rather than tracking `main`, so the
+separately. All six are the same shape — the decomposition model became one of them in 0.3.0,
+having been a markdown file on its own until then — and `audience` in the manifest says whether
+an instruction ends up in a student's chat or is for the teacher building the tree. Releases are tagged, and the website pins a tag rather than tracking `main`, so the
 version running on the site is always one that can be pointed at.
 
 **`version:` in `CITATION.cff` is the release number, and changing it is what makes a release.**

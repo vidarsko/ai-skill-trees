@@ -7,6 +7,47 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.5.0] - 2026-09-21
+
+### Added
+
+- **A `prompt` row that does not hit anything is an error now.** Until this release it was read,
+  listed back to the teacher as a setting, and then never used — the one place this format was
+  silent where it should not have been, and the one 0.4.2 had just finished writing into the
+  instructions as a caveat. It is the same failure as an unknown `config` key, with a worse
+  outcome: the teacher who asked for "no emoji" believes they got it, and the class gets the
+  default.
+
+  Two errors, both naming the row and both guessing at what was meant, the way an unknown
+  setting already did:
+
+  - `errorUnknownPromptSection` — the `name` column names a section the instruction does not
+    have. `withholdAnswer` is reported with *did you mean `withholdAnswers`?*
+  - `errorUnknownPromptTarget` — the `topic` column names something that is not an instruction
+    this tree composes. That includes `decomposition` and `authoring`: they are the teacher's
+    own, the engine never loads them on a tree page, and a row aimed at one of them does
+    nothing.
+
+  What counts as a known section is the instruction's own `order` **plus whatever the subject
+  family adds** — that is `sectionOrder()`, the same list composition walks, so the check cannot
+  drift from what actually gets used. A row with an empty `topic` applies to every instruction,
+  so it passes if any one of them has the section. Validation therefore runs from `bootstrap()`
+  after the modules and the family file are loaded, not from `splitRows()`, which is also why
+  `splitRows()` now keeps each prompt row's line number.
+
+  Both messages live in `languages/*.json` like every other string the engine shows, in all
+  three languages. The offline single-file build gets this for free — it goes through the same
+  `bootstrap()` — and the builder at aiskilltrees.com/make-your-own/ lists these errors with its
+  existing copy button, so the fix is a paste back into the chat.
+
+### Changed
+
+- `prompts/authoring.json` (**v1.2.0**) and `prompts/decomposition.json` (**v2.1.1**) no longer
+  tell a teacher that a mistyped section name goes unreported — it was true for one release.
+  They now say it is caught, with the row and a guess, and that looking the name up on
+  aiskilltrees.com/prompts/ still saves the round trip. The authoring instruction's list of
+  error messages a teacher might paste back gained this pair. The README says the same.
+
 ## [0.4.2] - 2026-09-21
 
 ### Changed

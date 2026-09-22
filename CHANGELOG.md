@@ -7,6 +7,43 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.11.0] - 2026-09-22
+
+### Added
+
+- **A tree can be taken with you: one button in the menu, both files.** The download button sits
+  last in the action menu and hands over `tree.csv` - the spreadsheet, byte for byte the file the
+  tree was built from - together with a single HTML file holding the whole tree. Where the tree
+  has an `exams.csv`, that comes too.
+
+  The two answer different questions, which is why it is one button and not a choice. The CSV is
+  what a teacher EDITS: open it, change a description, add a node, and rebuild. The HTML file is
+  what a teacher SHARES: it works by double-click, with no server and no network, so a class can
+  have the tree without having the site. Until now the only way to either was to go to
+  /make-your-own/ with a file you did not have.
+
+  The HTML file is the same single-file edition the builder produces - `standalone.html` with the
+  engine, the styles, the student instructions, the language file and the tree inside it. It
+  carries the tree's `meta.json` and the catalogue vocabulary too, which the builder's own output
+  cannot, so «About the subject» survives the download. The teacher-facing instructions
+  (`decomposition`, `authoring`) are left out, as they are in the builder: ~27 kB of text no
+  student opens.
+
+  **Nothing is hardcoded to one deployment.** The engine finds its own files from its own `src`,
+  and the styles from the `<link>` elements the document actually has - so the file looks like the
+  page it was downloaded from, and a deployment that adds a stylesheet gets it without anyone
+  remembering to change this.
+
+  **The button is absent in the single-file edition itself**, where it would be a detour around
+  «save as»: you already have the HTML, and the spreadsheet is inside it verbatim.
+
+  New UI keys `download.button` / `.title` / `.working` / `.failed` in all three language files,
+  and a `tree_download` analytics event where the host page provides `aistTrack`.
+
+  **Worth knowing:** one click means two or three downloads, and browsers ask once whether a site
+  may download multiple files. That is the cost of the single button; a zip would need a
+  dependency this project does not have.
+
 ## [0.10.2] - 2026-09-21
 
 ### Changed

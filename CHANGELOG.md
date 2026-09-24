@@ -7,6 +7,24 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.12.0] - 2026-09-24
+
+### Changed
+
+- **A diagnostic question in the lesson plan now has three to five options, not exactly four.**
+  The lesson planner ends every learning goal with a multiple-choice question, and the students
+  answer by holding up fingers. The number of options is now chosen to fit the question: one
+  correct option, plus one wrong option for each common misconception worth catching. Three is
+  the minimum and five the maximum, since one hand shows five. The instruction says not to add
+  options just to reach five, because an option that no student would choose tells the teacher
+  nothing.
+
+  The fixed four came from nowhere in particular. The source the paper cites for distractor-driven
+  questions (Wiliam & Leahy, *Embedding Formative Assessment*, 2015, p. 92) recommends at least
+  three options, and otherwise as many as the content calls for.
+
+  `lesson-plan.json` 1.2.0 → 1.3.0. No other module changes.
+
 ## [0.11.0] - 2026-09-22
 
 ### Added

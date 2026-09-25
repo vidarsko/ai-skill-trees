@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.13.0] - 2026-09-25
+
+### Changed
+
+- **The written material is now CC BY 4.0, not CC BY-SA 4.0.** This covers the instructions,
+  the subject-family files, the language files and the starter tree. The code stays MIT.
+  Attribution is now the only condition: a school or an organisation can adapt the instructions
+  or a tree for its own use and publish the result on its own terms. ShareAlike required that a
+  published adaptation carry the same licence, which is more than the method needs.
+
+  No instruction text changed, so every module keeps its version number. This is the release
+  the AI Skill Trees paper describes.
+
 ## [0.12.0] - 2026-09-24
 
 ### Changed

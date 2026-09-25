@@ -15,13 +15,13 @@ student pastes it into whichever chat they already use.
 | Path | What it is | Licence |
 |---|---|---|
 | `engine/` | `engine.js`, `tree.css`, `tokens.css` and the per-tree page template. No user-facing text. | MIT |
-| `prompts/` | The instructions, in English. One file per contribution, each separately versioned — including `decomposition.json`, how a subject is broken into nodes, and `authoring.json`, the instruction a teacher pastes into a chat to build one. | CC BY-SA 4.0 |
-| `prompts/subjects/` | What is true for one subject family but not another. Adds sections; does not replace them. | CC BY-SA 4.0 |
-| `languages/` | Everything that varies with language: interface strings, the words for the person learning (pupil, student, participant — inflected, so a tree only picks a key), and the language layer in the instructions. | CC BY-SA 4.0 |
-| `starter/` | `tree.csv` — a tiny working tree that doubles as the format's documentation. | CC BY-SA 4.0 |
+| `prompts/` | The instructions, in English. One file per contribution, each separately versioned — including `decomposition.json`, how a subject is broken into nodes, and `authoring.json`, the instruction a teacher pastes into a chat to build one. | CC BY 4.0 |
+| `prompts/subjects/` | What is true for one subject family but not another. Adds sections; does not replace them. | CC BY 4.0 |
+| `languages/` | Everything that varies with language: interface strings, the words for the person learning (pupil, student, participant — inflected, so a tree only picks a key), and the language layer in the instructions. | CC BY 4.0 |
+| `starter/` | `tree.csv` — a tiny working tree that doubles as the format's documentation. | CC BY 4.0 |
 
 Two licences, split by what the file is: `LICENSE` (MIT) covers code, `LICENSE-CONTENT`
-(CC BY-SA 4.0) covers the written material.
+(CC BY 4.0) covers the written material. Until 0.13.0 it was CC BY-SA 4.0.
 
 ## One file per tree
 

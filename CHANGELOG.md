@@ -7,6 +7,61 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.14.0] - 2026-09-26
+
+Fixes from a read-through of the paper against the code. Where the paper and the machinery
+disagreed, the machinery was changed when the paper described the right behaviour.
+
+### Fixed
+
+- **An unknown `slots.*` or `layout.*` setting is now an error.** Both were accepted by pattern,
+  so `slots.expresionFocus` loaded without complaint and did nothing — exactly the silence the
+  unknown-setting rule exists to prevent. The four slots the instructions actually use are now
+  listed one by one, and the `layout.*` keys are taken from the engine's own layout defaults.
+  Only `aids.<n>.*` is still a pattern, since the level numbers are the teacher's own.
+- **A `prompt` row aimed at "tutor", "test generator" or "lesson planner" now gets the right
+  guess.** The error already fired, but the "did you mean" came from edit distance alone and
+  had nothing to offer. It now also matches against each instruction's file name and title in
+  the manifest, so "tutor" suggests `node`, "lesson planner" suggests `lessonPlan`.
+- **`aidsField` in the decomposition model described a mechanism that does not exist**: an aids
+  default per subject, a switch to turn the field off, and level descriptions kept "not in the
+  CSV". It now says what the engine does: levels are `aids.*` config rows in `tree.csv`, a node
+  names its levels in the `aids` column, there is no default, and a subject without the
+  distinction simply leaves both out. The social-sciences family said the same wrong thing in
+  `assessmentContext` and is corrected the same way. The example rows now define the levels
+  they use, and `percentage` follows the `Term: definition` rule it sat next to.
+- **The subject-family rules now reach the model.** The decomposition model told the model to
+  read `prompts/subjects/<family>.json`, which a chat model cannot do. The manifest marks
+  `authoring` with `appendsSubjectFamilies`, the builder appends every family's `decomposition`
+  block after the specification, and a new last section, `subjectFamilies`, tells the model
+  which block to use. All of them go in, because the teacher has not named the subject yet when
+  the prompt is copied. The social-sciences rule that SOLO level names must never appear in a
+  tree was a `_comment`, which is never shown to anyone; it is now part of `guidance`.
+- **English instructions no longer point at a section that is not there.**
+  `writingStyleGeneral` ended "The language-specific section that follows gives concrete
+  examples…", but `languages/en.json` has no such section, by design: it is also the fallback
+  for every language without a file of its own. The sentence is gone; the Norwegian and Swedish
+  sections introduce themselves already.
+- **`languages/en.json` uses English punctuation.** Guillemets («»), which are Norwegian and
+  Swedish, are now curly quotes, and a hyphen used as a dash is an em dash. The same fix applies
+  to the two lead-ins quoted in `descriptionForm`.
+- **The starter tree now follows its own rules and uses what it can.** Skill names are verb
+  phrases ("Recognise equivalent fractions", not "Equivalent fractions"), the concept "What a
+  fraction is" is now "Fraction", and the tree has aids levels, `slots.courseSpecifics`,
+  `topicOrder` and `decompositionVersion`. Exams are the one feature it cannot show, since they
+  live in a file of their own.
+
+### Added
+
+- **`decompositionVersion`, a setting that records which version of the decomposition model a
+  tree was built against.** The decomposition model said a tree records this; nothing did. It is
+  shown under "About the course" and in the builder's settings list, and the checklist asks for
+  it.
+
+Module versions: `decomposition.json` 2.5.0 → 2.6.0, `shared.json` 1.2.0 → 1.2.1, each subject
+family 1.0.0 → 1.1.0, `manifest.json` 2.0.0 → 2.1.0. The four student instructions are
+unchanged apart from the sentence removed from `writingStyleGeneral`, which they share.
+
 ## [0.13.0] - 2026-09-25
 
 ### Changed

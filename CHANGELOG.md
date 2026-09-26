@@ -7,6 +7,46 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.15.0] - 2026-09-26
+
+### Changed
+
+- **The instructions are shorter: by about a quarter to a half, with the same rules.** The
+  practice tutor a student copies went from about 2,000 words to 1,100, the authoring prompt
+  from 6,800 to 4,500, the lesson plan from 2,100 to 1,500 and the test from 1,200 to 900. What
+  went was repetition, justification addressed to the reader, and asides like "I am a teacher
+  with a spare afternoon, not a project manager". Every rule stayed, and so did every section
+  id, placeholder and `order` list, so `prompt` rows in existing trees still find their section.
+  The CSV tables and example rows in the decomposition model are unchanged.
+
+  The change was tested before it was made. 204 conversations on Claude Haiku, Sonnet and Opus
+  compared the old and new wording on eleven fixtures, English and Norwegian, with simulated
+  students and teachers and a blind judge. Every `tree.csv` from the authoring runs was loaded
+  in the builder. The short versions matched or beat the old ones for the tutor, the test, the
+  lesson plan and the authoring prompt. Two sentences were put back after the first round
+  lost: the test's answer key again gives a worked answer for every task, including the ones
+  the student got right, and the tutor says it can be wrong in its first message and now and
+  then after that.
+
+- **The decomposition model is shorter as a document too.** It now states its copyright rule
+  in one paragraph instead of an argument, and drops the reasons given to a human reader for
+  several rules. The rules themselves, the tables and the checklist are unchanged. An example
+  tree now records `decompositionVersion` 2.7.0.
+
+### Not changed
+
+- **The motivation dialogue keeps its wording.** Three shorter versions each did worse in
+  Norwegian than the current one: they steered less towards the point that the subject builds
+  on itself, answered "I can't be bothered" with an argument instead of a question, and dropped
+  the closing plan. Its length is the material the conversation draws on.
+- **The Norwegian and Swedish language files are unchanged.** English (`en.json`) has a
+  shorter `outputLanguage` section.
+
+Module versions: `authoring.json` 1.4.0 → 1.5.0, `decomposition.json` 2.6.0 → 2.7.0,
+`practice-tutor.json` 1.3.0 → 1.4.0, `test-generator.json` 1.2.0 → 1.3.0, `lesson-plan.json`
+1.3.0 → 1.4.0, `shared.json` 1.2.1 → 1.3.0, each subject family 1.1.0 → 1.2.0.
+`motivation.json` and `manifest.json` are unchanged.
+
 ## [0.14.0] - 2026-09-26
 
 Fixes from a read-through of the paper against the code. Where the paper and the machinery

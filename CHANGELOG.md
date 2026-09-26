@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.16.1] - 2026-09-26
+
+### Fixed
+
+- **Skill boxes are orange, and concept boxes stay green.** The rule that gives a skill its own
+  fill still targeted `.type-ferdighet`, the Norwegian node type from before the type became
+  the English data enum `skill` | `concept`. The engine writes `type-skill`, so no node ever
+  matched, and every skill was drawn in the concept green. The rule now targets
+  `.type-skill`. The fill is 40% amber with a full amber border, not the pale
+  `--amber-tint`: at the tint, the skills read as beige beside the green.
+
+Visual only. No instruction module, language file or tree format changes.
+
 ## [0.16.0] - 2026-09-26
 
 ### Changed

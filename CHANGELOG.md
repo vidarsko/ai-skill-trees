@@ -16,9 +16,10 @@ visible at aiskilltrees.com.
   write in the subject** (`slots.expressionFocus`). In the 0.15.0 benchmark only 4 of 12
   maths authoring conversations asked about sloppiness. The rest guessed, some without saying
   so, and one wrote a Norwegian tree for a teacher whose class is taught in English. In ten
-  test runs on the new wording, every conversation asked about sloppiness, and in the four
-  runs that also had the language question, every one asked it and wrote the tree in the
-  language the teacher gave.
+  test runs on the new wording, every conversation asked about sloppiness. In the four runs
+  that also had the language question, three asked it. The fourth announced it would write in
+  Norwegian and switched when the teacher corrected it. All four trees were in the teacher's
+  language.
 
 ### Fixed
 

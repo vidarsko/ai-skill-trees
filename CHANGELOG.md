@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.17.1] - 2026-09-27
+
+### Changed
+
+- **The practice tutor's soft message length is about 40 words, and about 70 for the first
+  message** (was 50 and 80). At 50 the replies still read as long when Vidar tried the tutor.
+  Only the numbers in `messageLength` change.
+
+Module versions: `practice-tutor.json` 1.5.0 → 1.6.0. Nothing else changes.
+
 ## [0.17.0] - 2026-09-27
 
 ### Changed

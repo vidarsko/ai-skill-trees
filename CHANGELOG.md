@@ -7,6 +7,25 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.17.0] - 2026-09-27
+
+### Changed
+
+- **The practice tutor has a soft message length, in its own section `messageLength`.** About
+  50 words per message, about 80 for the first. When an explanation needs more, the tutor splits
+  it over several turns and checks that the student is following before it goes on, preferably
+  with a small question the student can only answer if they followed. The rule "Keep answers
+  very short unless the student asks for more" in `tone` was not enough: in the tutor
+  conversation reproduced in the paper, the first explanation ran to several paragraphs. A
+  teacher who wants a different length replaces the one section with a `prompt` row.
+
+### Fixed
+
+- **The help text says the map runs from top to bottom**, not from left to right. Topics are
+  columns, and the more composite outcomes lie further down each column. All three languages.
+
+Module versions: `practice-tutor.json` 1.4.0 → 1.5.0. Nothing else changes.
+
 ## [0.16.1] - 2026-09-26
 
 ### Fixed

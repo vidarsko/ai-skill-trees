@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.18.1] - 2026-09-27
+
+### Fixed
+
+- **`CITATION.cff` names both licences**: MIT for the code and CC BY 4.0 for the written
+  material, as `LICENSE` and `LICENSE-CONTENT` already say. It named MIT only, so the Zenodo
+  record did too.
+
+No instruction module, language file or engine changes.
+
 ## [0.18.0] - 2026-09-27
 
 ### Fixed

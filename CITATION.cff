@@ -21,7 +21,9 @@ keywords:
   - open educational resources
   - prompt engineering
   - prerequisite graph
-license: MIT
+license:
+  - MIT
+  - CC-BY-4.0
 license-url: https://github.com/vidarsko/ai-skill-trees/blob/main/README.md
-version: 0.18.0
+version: 0.18.1
 date-released: '2026-09-27'

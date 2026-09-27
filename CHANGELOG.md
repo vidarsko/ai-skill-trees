@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.18.2] - 2026-09-27
+
+### Fixed
+
+- **Zenodo can read `CITATION.cff` again.** 0.18.1 gave `license` as a list (MIT and
+  CC-BY-4.0). That is valid CFF, but Zenodo's GitHub import failed on it with "Citation metadata
+  load failed", so 0.18.1 has no Zenodo record. `license` is `MIT` again, and the abstract says
+  that the written material is CC BY 4.0, as `LICENSE-CONTENT` does.
+
+No instruction module, language file or engine changes: apart from `CITATION.cff` and this
+file, 0.18.2 is identical to 0.18.1.
+
 ## [0.18.1] - 2026-09-27
 
 ### Fixed

@@ -15,15 +15,15 @@ abstract: >-
   A skill tree is a graph of the skills and concepts in one school subject,
   written by a teacher, with an instruction on each node that a student copies
   into an AI chat. This repository holds the rendering engine, the
-  instructions, the interface languages and the decomposition model.
+  instructions, the interface languages and the decomposition model. The code
+  is under the MIT licence; the written material (prompts/, languages/ and
+  starter/) is under CC BY 4.0, see LICENSE-CONTENT.
 keywords:
   - education
   - open educational resources
   - prompt engineering
   - prerequisite graph
-license:
-  - MIT
-  - CC-BY-4.0
+license: MIT
 license-url: https://github.com/vidarsko/ai-skill-trees/blob/main/README.md
-version: 0.18.1
+version: 0.18.2
 date-released: '2026-09-27'

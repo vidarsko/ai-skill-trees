@@ -7,6 +7,21 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.18.0] - 2026-09-27
+
+### Fixed
+
+- **The decomposition prompt no longer contradicts its own threshold rule.** Under
+  `whichConcepts`, the "In practice" paragraph told the model to give every term later nodes
+  depend on its own concept node "even if most students already know it", straight after the
+  rule that whether a term earns a node depends on how safely the cohort already has it. The
+  paragraph now applies that threshold to each term, and keeps a lean towards inclusion only
+  where the model is unsure. An outside review of the paper pointed this out: the paper
+  blames the model for trees with too many trivial concept nodes, and the prompt was asking
+  for them.
+
+Module versions: `decomposition.json` 2.8.0 → 2.9.0. Nothing else changes.
+
 ## [0.17.1] - 2026-09-27
 
 ### Changed

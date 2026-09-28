@@ -7,6 +7,14 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.19.3] - 2026-09-28
+
+### Changed
+
+- **The motivation button no longer names mathematics.** In Norwegian it reads «Hvorfor skal jeg
+  lære dette?» and in Swedish «Varför ska jag lära mig det här?», matching the English «Why should
+  I learn this?», so the button fits every subject.
+
 ## [0.19.2] - 2026-09-28
 
 ### Changed

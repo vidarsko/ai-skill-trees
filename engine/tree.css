@@ -1504,6 +1504,23 @@ body {
   stroke-width: 1.7;
 }
 
+/* Kanter mellom emner: i hvile bare stubbene, når en av nodene er åpen bare
+   hele kanten (se edgeStub i engine.js). */
+#edges path.edge-cross:not(.edge-selected),
+#edges path.edge-stub.edge-selected {
+  display: none;
+}
+
+#edges path.edge-stub {
+  stroke: color-mix(in srgb, var(--ink) 35%, transparent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#edges path.edge-stub.edge-from-mastered {
+  stroke: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
 #edges path.edge-selected {
   stroke: color-mix(in srgb, var(--accent) 85%, transparent);
   stroke-width: 2.4;

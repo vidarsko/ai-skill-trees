@@ -3281,6 +3281,22 @@ function renderGraph(columnMeta) {
         path.classList.add('edge-from-mastered');
       }
       svg.appendChild(path);
+
+      // En kant mellom to emner tegnes i hvile bare som to korte stubber med
+      // pil, én ut fra hver ende. Hele kanten vises når en av nodene er åpen
+      // (se .edge-cross og .edge-stub i tree.css).
+      if (dep.topic !== node.topic) {
+        path.classList.add('edge-cross');
+        [edgeStub(x1, y1, x2, y2, 1), edgeStub(x2, y2, x1, y1, -1)].forEach(sd => {
+          const stub = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          stub.setAttribute('d', sd);
+          stub.dataset.from = dep.id;
+          stub.dataset.to = node.id;
+          stub.classList.add('edge-stub');
+          if (path.classList.contains('edge-from-mastered')) stub.classList.add('edge-from-mastered');
+          svg.appendChild(stub);
+        });
+      }
     });
   });
 
@@ -3290,6 +3306,27 @@ function renderGraph(columnMeta) {
   });
 
   updateEdgeHighlight();
+}
+
+/* En stubb fra (x, y) i retning av (tx, ty), med en pilspiss på den frie
+   enden som peker videre dit kanten går. `down` er 1 for en stubb som går ned
+   fra forutsetningen og -1 for en som går opp fra noden som avhenger av den.
+   Retningen holdes innenfor 55° fra loddrett, så stubben ikke legger seg langs
+   kanten av boksen. */
+const STUB = { length: 30, head: 7 };
+function edgeStub(x, y, tx, ty, down) {
+  let dx = tx - x;
+  let dy = Math.max((ty - y) * down, Math.abs(dx) * 0.7, 1);
+  const len = Math.hypot(dx, dy);
+  const ux = dx / len, uy = dy * down / len;
+  const ex = x + ux * STUB.length, ey = y + uy * STUB.length;
+  const wing = (a) => {
+    const c = Math.cos(a), s = Math.sin(a);
+    return [ex - STUB.head * (ux * c - uy * s), ey - STUB.head * (ux * s + uy * c)];
+  };
+  const [ax, ay] = wing(Math.PI / 6);
+  const [bx, by] = wing(-Math.PI / 6);
+  return `M ${x} ${y} L ${ex} ${ey} M ${ax} ${ay} L ${ex} ${ey} L ${bx} ${by}`;
 }
 
 /* Transitiv reduksjon av én nodes avhengigheter, for tegningen: en

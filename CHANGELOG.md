@@ -7,6 +7,24 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.19.0] - 2026-09-28
+
+### Added
+
+- **Three `style.*` settings.** `style.conceptColor` and `style.skillColor` (a hex code) recolour
+  the two node types, and `style.font` picks one of five system font stacks: `system`,
+  `humanist`, `rounded`, `serif`, `mono`. The stacks are tokens in `engine/tokens.css`
+  (`--font-<name>`). A malformed colour or an unknown font is reported with its row, in all three
+  languages, and the default is kept. A row giving the default colour draws the same tree as no
+  row at all.
+- **`AIST_EFFECTIVE_CONFIG` describes the instructions.** For each instruction a student gets,
+  the engine now publishes every section in order with the text the tree would get without its
+  own `prompt` rows, which layer that text came from, the row that overrides it if any, and
+  whether the section is filled from the tree itself or only applies sometimes. The editor at
+  aiskilltrees.com/make-your-own/ reads this, so it never keeps its own copy of the lookup order. The
+  same object now also lists the font choices, the learner words of the tree's language and the
+  subject families.
+
 ## [0.18.2] - 2026-09-27
 
 ### Fixed

@@ -59,6 +59,13 @@ the tops of the columns form a staircase and the tree reads left to right in
 the order the subject can be taken. Any of the three can still be given
 explicitly, and an explicit value always wins.
 
+**Three settings change how the tree looks, and no more.** `style.conceptColor` and
+`style.skillColor` take a hex code (`#1F6F4A`) and recolour every node of that type; the colour
+stays bound to the type, and the type is still written on each node, so colour never carries the
+meaning alone. `style.font` takes one of `system`, `humanist`, `rounded`, `serif` or `mono`,
+which are stacks of system faces defined in `engine/tokens.css`, because the single-file edition
+has to look the same offline. A value outside those is an error, like an unknown setting.
+
 ## Where a deployment serves this
 
 The folder names here are the names in the repository. A site that deploys this serves them

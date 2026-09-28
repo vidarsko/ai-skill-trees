@@ -127,7 +127,7 @@ let LAYOUT = {
   vGap: 96,
   columnGap: 56,
   columnLabelHeight: 28,   // emnebåndet øverst — holdes lavt, se .column-header i tree.css
-  maxNodesPerRow: 3, // bryt en emne-rad i flere rader nedover når den blir bredere enn dette
+  maxNodesPerRow: 4, // bryt en emne-rad i flere rader nedover når den blir bredere enn dette
   padding: 12,             // luft rundt hele lerretet; var 20 til 2026-09-20
   barycenterPasses: 4,
 };
@@ -3313,7 +3313,7 @@ function renderGraph(columnMeta) {
    fra forutsetningen og -1 for en som går opp fra noden som avhenger av den.
    Retningen holdes innenfor 55° fra loddrett, så stubben ikke legger seg langs
    kanten av boksen. */
-const STUB = { length: 30, head: 7 };
+const STUB = { length: 44, head: 5 };
 function edgeStub(x, y, tx, ty, down) {
   let dx = tx - x;
   let dy = Math.max((ty - y) * down, Math.abs(dx) * 0.7, 1);

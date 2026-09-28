@@ -7,6 +7,17 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.19.2] - 2026-09-28
+
+### Changed
+
+- **A dependency between two topics is drawn as two short stubs until a node is opened.** At
+  rest, each such edge shows only its first and last stretch, cut from the edge's own curve at a
+  fixed length, with an arrowhead along the curve pointing where the edge goes. Opening either
+  node draws the whole edge, highlighted as before. Dependencies within a topic are drawn in
+  full, as before.
+- **Resting edges are darker** (25 % ink instead of 15 %), since fewer of them are drawn.
+
 ## [0.19.1] - 2026-09-28
 
 ### Changed

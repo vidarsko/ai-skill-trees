@@ -7,6 +7,15 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.19.1] - 2026-09-28
+
+### Changed
+
+- **The graph draws only direct dependencies.** An edge that already follows from a longer path is
+  left out of the drawing: if C depends on A and B, and B depends on A, only A→B and B→C are
+  drawn. `tree.csv` is read as written, and the node panel, the tutor instruction and the
+  lesson-plan instruction still list every inherited prerequisite.
+
 ## [0.19.0] - 2026-09-28
 
 ### Added

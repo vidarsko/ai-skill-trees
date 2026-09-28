@@ -127,7 +127,7 @@ let LAYOUT = {
   vGap: 96,
   columnGap: 56,
   columnLabelHeight: 28,   // emnebåndet øverst — holdes lavt, se .column-header i tree.css
-  maxNodesPerRow: 4, // bryt en emne-rad i flere rader nedover når den blir bredere enn dette
+  maxNodesPerRow: 3, // bryt en emne-rad i flere rader nedover når den blir bredere enn dette
   padding: 12,             // luft rundt hele lerretet; var 20 til 2026-09-20
   barycenterPasses: 4,
 };
@@ -3287,7 +3287,7 @@ function renderGraph(columnMeta) {
       // (se .edge-cross og .edge-stub i tree.css).
       if (dep.topic !== node.topic) {
         path.classList.add('edge-cross');
-        [edgeStub(x1, y1, x2, y2, 1), edgeStub(x2, y2, x1, y1, -1)].forEach(sd => {
+        [false, true].map(atEnd => edgeStub([[x1, y1], [x1, midY], [x2, midY], [x2, y2]], atEnd)).forEach(sd => {
           const stub = document.createElementNS('http://www.w3.org/2000/svg', 'path');
           stub.setAttribute('d', sd);
           stub.dataset.from = dep.id;
@@ -3308,25 +3308,51 @@ function renderGraph(columnMeta) {
   updateEdgeHighlight();
 }
 
-/* En stubb fra (x, y) i retning av (tx, ty), med en pilspiss på den frie
-   enden som peker videre dit kanten går. `down` er 1 for en stubb som går ned
-   fra forutsetningen og -1 for en som går opp fra noden som avhenger av den.
-   Retningen holdes innenfor 55° fra loddrett, så stubben ikke legger seg langs
-   kanten av boksen. */
+/* Stubbene er den første og den siste biten av selve kanten: kurven kuttes der
+   buelengden når STUB.length, så en stubb peker nøyaktig dit den hele kanten
+   går. Pilspissen sitter på den frie enden, langs kurven og vekk fra noden.
+   `c` er kantens fire kontrollpunkter; `atEnd` gir stubben ved noden som
+   avhenger (starter ved noden og går opp mot forutsetningen). */
 const STUB = { length: 44, head: 5 };
-function edgeStub(x, y, tx, ty, down) {
-  let dx = tx - x;
-  let dy = Math.max((ty - y) * down, Math.abs(dx) * 0.7, 1);
-  const len = Math.hypot(dx, dy);
-  const ux = dx / len, uy = dy * down / len;
-  const ex = x + ux * STUB.length, ey = y + uy * STUB.length;
+function bezierPoint(c, t) {
+  const u = 1 - t;
+  return [0, 1].map(i => u*u*u*c[0][i] + 3*u*u*t*c[1][i] + 3*u*t*t*c[2][i] + t*t*t*c[3][i]);
+}
+function bezierTangent(c, t) {
+  const u = 1 - t;
+  return [0, 1].map(i => 3*u*u*(c[1][i]-c[0][i]) + 6*u*t*(c[2][i]-c[1][i]) + 3*t*t*(c[3][i]-c[2][i]));
+}
+// De Casteljau: kontrollpunktene til delkurven [0, t].
+function bezierHead(c, t) {
+  const lerp = (a, b) => [a[0] + (b[0]-a[0])*t, a[1] + (b[1]-a[1])*t];
+  const a = lerp(c[0], c[1]), b = lerp(c[1], c[2]), d = lerp(c[2], c[3]);
+  const e = lerp(a, b), f = lerp(b, d);
+  return [c[0], a, e, lerp(e, f)];
+}
+function edgeStub(c, atEnd) {
+  // Snu kurven for stubben ved noden, så begge tilfeller starter ved t = 0.
+  const curve = atEnd ? [c[3], c[2], c[1], c[0]] : c;
+  const steps = 200;
+  let len = 0, t = 1, prev = curve[0];
+  for (let i = 1; i <= steps; i++) {
+    const pt = bezierPoint(curve, i / steps);
+    len += Math.hypot(pt[0] - prev[0], pt[1] - prev[1]);
+    prev = pt;
+    if (len >= STUB.length) { t = i / steps; break; }
+  }
+  const h = bezierHead(curve, t);
+  const [ex, ey] = h[3];
+  let [ux, uy] = bezierTangent(curve, t);
+  const n = Math.hypot(ux, uy) || 1;
+  ux /= n; uy /= n;
   const wing = (a) => {
-    const c = Math.cos(a), s = Math.sin(a);
-    return [ex - STUB.head * (ux * c - uy * s), ey - STUB.head * (ux * s + uy * c)];
+    const cs = Math.cos(a), sn = Math.sin(a);
+    return [ex - STUB.head * (ux * cs - uy * sn), ey - STUB.head * (ux * sn + uy * cs)];
   };
   const [ax, ay] = wing(Math.PI / 6);
   const [bx, by] = wing(-Math.PI / 6);
-  return `M ${x} ${y} L ${ex} ${ey} M ${ax} ${ay} L ${ex} ${ey} L ${bx} ${by}`;
+  return `M ${h[0][0]} ${h[0][1]} C ${h[1][0]} ${h[1][1]}, ${h[2][0]} ${h[2][1]}, ${ex} ${ey} ` +
+         `M ${ax} ${ay} L ${ex} ${ey} L ${bx} ${by}`;
 }
 
 /* Transitiv reduksjon av én nodes avhengigheter, for tegningen: en

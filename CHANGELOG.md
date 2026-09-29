@@ -7,6 +7,21 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.20.0] - 2026-09-29
+
+### Changed
+
+- **The practice tutor opens shorter** (practice tutor 1.7.0). The first message names the skill
+  or concept in one sentence, gives the reminder that the model can be wrong in one short
+  sentence, and asks one question, such as "Want me to explain it?", instead of listing four
+  options. The soft limit on the first message goes from about 70 words to about 50.
+
+### Added
+
+- **The tutor mentions features the chat service has.** Once, in the second or third message and
+  in one sentence, it tells the student about features it actually has, for example that they can
+  send a photo of their handwritten working, or talk by voice.
+
 ## [0.19.3] - 2026-09-28
 
 ### Changed

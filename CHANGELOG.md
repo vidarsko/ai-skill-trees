@@ -7,6 +7,29 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.22.0] - 2026-09-30
+
+### Changed
+
+- **`exams.csv` is now `resources.csv`, and it is no longer about exams only.** The old columns
+  (`year`, `season`, `aids`, `number`) fitted the Norwegian two-part exam and nothing else. The new
+  file has four columns: `node_id`, `group`, `label` and `url`, and all but `node_id` are free
+  text, so an exam question ("Spring 2026, Part 1, task 3"), a textbook section ("Chapter 4.2") and
+  a video can sit beside one node in the same file. The panel lists them under one heading per
+  `group`, in the order the groups first appear; a row with no group goes under "Resources". A row
+  with a URL is a link, and a row with a URL but no label shows the URL. The setting is
+  `features.resources`. The downloaded single-file edition carries `resources.csv`, and the
+  download button saves it as `<tree>-resources.csv`.
+- Decomposition 2.10.1: the settings table names `features.resources` and the columns of
+  `resources.csv`.
+
+### Migrating
+
+- A tree that sets `features.exams` gets an error naming the new setting and file, and its old
+  `exams.csv` is not read. Rename the setting to `features.resources` and the file to
+  `resources.csv`, and turn each old row into `node_id,group,label,url`, for instance
+  `percentage,Exam,"Spring 2026, Part 1, task 1",`.
+
 ## [0.21.0] - 2026-09-30
 
 ### Added

@@ -85,7 +85,7 @@ Text is split by what it varies with, not by file type.
 | `prompts/subjects/<family>.json` | subject family | What applies to mathematics but not to social studies. |
 | `languages/<code>.json` | language | Interface strings, and the language layer in the instructions. |
 | `<tree>/tree.csv` | one subject | Everything that tree owns: the nodes, its settings, and any instruction the teacher rewrote. |
-| `<tree>/exams.csv` | one subject | Optional: past exam questions per node. |
+| `<tree>/resources.csv` | one subject | Optional: resources per node — exam questions, textbook sections, videos. Columns `node_id`, `group`, `label`, `url`, all but `node_id` free text. |
 
 **A new language costs one file.** `languages/<code>.json` — not a copy of the engine, not a new
 page template, not a line of JavaScript.

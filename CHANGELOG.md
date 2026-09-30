@@ -7,6 +7,45 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [Unreleased]
+
+To be released as 0.21.0.
+
+### Added
+
+- **Three new subject families.** `practical-aesthetic` (music, arts and crafts, drama, dance,
+  physical education): the AI cannot hear or see a performance, so on a practical skill node it
+  teaches the theory, suggests exercises and what to listen or look for in a recording, uses the
+  description as a self-assessment checklist, and leaves mastery to the student; the test
+  generator sets tasks only on theory and notation. `language-and-literature` (the first
+  language): the AI writes practice texts itself, asks for the passage when a literary work is
+  interpreted, judges an interpretation on how well it is argued, and does not write the student's
+  text for them. `language-acquisition` (foreign languages): grammar is skills, vocabulary is fact
+  nodes, explanations are in the conversation language and practice in the language being
+  learned, and spoken skills are not judged by the AI. All three are version 1.0.0. A tree that
+  patched one of these limits in `slots.courseSpecifics` (a choir tree saying the AI cannot hear
+  the singers, for instance) can switch family and remove the line.
+- **A third node type, `fact`** (practice tutor 1.8.0, test generator 1.4.0, lesson plan 1.5.0,
+  decomposition 2.10.0). A fact node is a collection to recall, not to understand: vocabulary,
+  the multiplication table, key dates. Its description lists one item per line as `cue: answer`,
+  split at the first colon like a concept's `Term: definition`, and a line with no colon is a
+  rule the items are made from ("every product a × b where a and b are from 1 to 10"). The panel
+  prints "The student can recall:" in front of the list, and the node is drawn blue with a third
+  corner shape. The tutor drills against the listed answers, both ways where that makes sense, and
+  offers the list for a flashcard app; the test generator makes recall tasks; the lesson plan
+  replaces the worked rounds with retrieval practice. The decomposition prompt says when a fact
+  node is right (only where knowing the items automatically frees capacity later) and where the
+  boundary with a concept lies. New setting `style.factColor`.
+- **An unknown node type is reported as an error**, with a guess at what was meant. Until now it
+  was drawn as a concept and given the skill sections of the instruction.
+
+### Changed
+
+- `social-sciences` 1.3.0: recalling a list such as the dates of key events is a fact node, and
+  the first-language subject and its literature have moved to `language-and-literature`.
+- The skill sections of the practice tutor (and every family section anchored after them) no
+  longer apply to everything that is not a concept, only to skills.
+
 ## [0.20.0] - 2026-09-29
 
 ### Changed

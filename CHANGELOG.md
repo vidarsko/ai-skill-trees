@@ -7,9 +7,7 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
-## [Unreleased]
-
-To be released as 0.21.0.
+## [0.21.0] - 2026-09-30
 
 ### Added
 

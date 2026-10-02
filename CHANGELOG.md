@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.23.0] - 2026-10-02
+
+### Added
+
+- **`basedOn`: the trees a tree was made from, kept in the tree's own file.** The trees and the
+  instructions are CC BY 4.0, so whoever adapts a tree has to credit the one it came from. Three
+  new settings, numbered like the aid levels, name each earlier tree: `basedOn.<n>.author`,
+  `basedOn.<n>.title` and `basedOn.<n>.url`. `1` is the tree this one was made from, `2` the tree
+  that one was made from, and so on. "About the course" lists them under "Based on", nearest
+  first, with a link where a URL is given. The list is read from `tree.csv` even when the tree has
+  a `meta.json`, so it travels with the file when the tree is downloaded, and nothing has to keep
+  it anywhere else. A misspelt `basedOn` key is reported like any other unknown setting.
+
 ## [0.22.0] - 2026-09-30
 
 ### Changed

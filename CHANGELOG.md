@@ -7,6 +7,14 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.24.1] - 2026-10-02
+
+### Changed
+
+- **`soloTaxonomy` is shorter** (decomposition 2.11.1, `social-sciences` 1.4.1). It names SOLO
+  and describes the levels in one sentence, with the node types as examples, instead of a table
+  of level names and verbs. Skill verbs come from the family's `skillVerbs`.
+
 ## [0.24.0] - 2026-10-02
 
 ### Changed

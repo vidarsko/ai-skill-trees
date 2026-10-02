@@ -7,6 +7,15 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.23.1] - 2026-10-02
+
+### Fixed
+
+- **The engine's own files carry the MIT notice.** `engine.js`, `tree.css` and `tokens.css` now
+  open with a one-line copyright and licence comment. The single-file edition of a tree embeds
+  these files without `LICENSE`, and the MIT licence asks that the notice go with every copy, so
+  each downloaded tree now carries it.
+
 ## [0.23.0] - 2026-10-02
 
 ### Added

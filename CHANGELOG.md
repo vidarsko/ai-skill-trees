@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.24.0] - 2026-10-02
+
+### Changed
+
+- **The SOLO taxonomy applies to every subject** (decomposition 2.11.0, `social-sciences`
+  1.4.0). It was a social-sciences rule; it is now a section of the decomposition prompt,
+  `soloTaxonomy`, used to judge how nodes build on each other, not to choose what is learned. A
+  fact node is recall of separate items, a concept node is understanding one idea, and a skill
+  node that connects several nodes sits at the upper levels, below the nodes it connects. Verbs
+  stay with each family's `skillVerbs`. The social-sciences block keeps only what is specific to
+  it: most of its skill nodes sit at the upper levels. It no longer places concept nodes at the
+  lower levels, since a concept node asks the student to explain, which is relational.
+
 ## [0.23.1] - 2026-10-02
 
 ### Fixed

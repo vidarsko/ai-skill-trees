@@ -7,6 +7,24 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.26.0] - 2026-10-03
+
+### Changed
+
+- **Every subject family has the same sections.** Each family now carries its own version of
+  every section any family replaces: `leadIn`, `vocabulary`, `skillGuidance` and
+  `conceptGuidance` in the practice tutor, `task` and `conceptMix` in the test generator,
+  `starter`, `examplePair` and `conceptAdaptation` in the lesson planner, and `argumentsPractice`
+  and `argumentsLongTerm` in the motivation dialogue. Where a family has nothing of its own, the
+  section is a verbatim copy of the general text, so two families can be read side by side and
+  the differences between subjects are exactly the sections that differ. The composed
+  instructions are unchanged. All six families get a minor version bump.
+
+### Added
+
+- **`tools/check-families.py`** checks that every family has the same sections, and lists which
+  families use the general text for each one.
+
 ## [0.25.1] - 2026-10-03
 
 ### Changed

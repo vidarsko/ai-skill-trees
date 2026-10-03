@@ -7,6 +7,22 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.27.0] - 2026-10-03
+
+### Changed
+
+- **The lesson planner (3.0.0) describes the structure of the lesson instead of receiving a
+  timetable.** The engine no longer computes one: `schedule`, `tightWarning` and the variables
+  `{schedule}`, `{perGoal}`, `{starterMinutes}`, `{recallMinutes}` and `{goalCount}` are gone. A
+  new section, `structure`, says the lesson has a beginning (the starter), a middle (the goals,
+  each ending on a diagnostic question) and an end (retrieval), that the model divides the
+  `{totalMinutes}` between them, and that it should say so when there is too little time.
+  `structure` is one of the sections every subject family carries; the mathematics family keeps
+  the old timing in its text (7 minutes for the starter, 5 for retrieval, the last 3 of each goal
+  for its diagnostic question, and a warning below about 12 minutes per goal). The other families
+  use the general text. `starter` and `recall` are headed "THE BEGINNING" and "THE END".
+  Families get a minor version bump. The `tightSchedule` condition is removed.
+
 ## [0.26.0] - 2026-10-03
 
 ### Changed

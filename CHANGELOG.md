@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.25.1] - 2026-10-03
+
+### Changed
+
+- **Every language file names the conversation language with `{conversationLanguage}`.** The
+  Norwegian and Swedish `outputLanguage` wrote the language's name into the sentence, so a tree's
+  `languageName` setting had no effect there; only `en.json` used the variable. A language file
+  can now say how its name is written inside a sentence (`prompt.conversationLanguage`:
+  "norsk (bokmål)", "svenska"), which is the default when the tree sets no `languageName`.
+- **The practice tutor (2.0.1) puts `outputLanguage` and `languageSwitch` after `vocabulary`**,
+  still under *Role and style*.
+
 ## [0.25.0] - 2026-10-03
 
 ### Changed

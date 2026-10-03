@@ -7,6 +7,21 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.29.0] - 2026-10-03
+
+### Changed
+
+- **The lesson planner (3.1.0) is written in full sentences, without headings in capitals.**
+  "FORMAT OF THE ANSWER", "THE BEGINNING: STARTER", "THE MAIN PART", "ADAPTATION FOR CONCEPTS",
+  "DIAGNOSTIC QUESTION", "THE END: RETRIEVAL" and the a)/b)/c) labels inside `examplePair` are
+  gone; each section says what it is in its first sentence. The board marker the plan uses is
+  "On the board:". The families' copies are rewritten the same way, and their own additions say
+  "In this subject" and "Here is an example of the form of a starter". Families get a minor
+  version bump.
+- **English `writingStyle` is no longer empty.** It gives an English example of the active-voice
+  advice, and, since `en.json` is also the fallback for languages without a file of their own,
+  says to apply the same idea in another conversation language.
+
 ## [0.28.0] - 2026-10-03
 
 ### Changed

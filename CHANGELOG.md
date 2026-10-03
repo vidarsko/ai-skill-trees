@@ -7,6 +7,40 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.25.0] - 2026-10-03
+
+### Changed
+
+- **The four student instructions are grouped under headings, in the order a teacher reads
+  them** (practice tutor, test generator, motivation dialogue and lesson planner, all 2.0.0). Each
+  module has `groups` instead of `order`: *Role and style* first, then what the instruction is
+  for (*How to teach* and *The goal* in the tutor, *The test*, *The conversation*, *The lesson*),
+  and *Context* last, which holds the prerequisites, the aid levels, the teacher's course text and
+  `noMemory`. The headings are also written into the composed instruction (`## Role and style`).
+- **Every section names its condition.** A module's `when` map gives each conditional section a
+  named condition (`hasPrerequisites`, `conceptNode`, `severalAids` …), so the builder and
+  `/prompts/` can say "Concept nodes" instead of "only sometimes". What a name means stays in the
+  engine (`CONDITIONS`, which replaces `SECTION_WHEN`).
+- **A subject family replaces a section instead of adding one after it** (all six families
+  bumped a major version). Each point now has one text: the family's, or the general one for a
+  tree without a family, so a teacher edits it in one place. The families' additions are merged
+  into full sections: `leadInExample` into `leadIn`, `conceptGuidanceCalculation` into
+  `conceptGuidance`, `practicalSkill`, `oralSkill`, `texts` and `ownWriting` into
+  `skillGuidance`, `starterExample` into `starter`, the `mainPart…` sections into `examplePair`,
+  and so on. Families use `instructions.<instruction>.sections`; `add` remains for a section the
+  general instructions do not have, which is now only language acquisition's `practiceLanguage`.
+- **The three node types each have one guidance section.** `skillGuidance` is new (skill nodes:
+  learn by doing, a hint rather than the full solution), beside `conceptGuidance` and
+  `factGuidance`.
+- **Sections that only summarised other sections are gone.** The tutor's `principles` is spread
+  over `fallibility`, `features`, `difficulty` and `mastery`; the motivation dialogue's
+  `argumentTypes` and `rules` over `coreMessage`, `oneAtATime`, `warmth`, `opening` and
+  `direction`. `argumentsLongTerm` no longer ends on "listed next" for a tree without a family.
+- **The test generator stores nothing in memory** (`noMemory`), like the other three.
+
+A `prompt` row naming a removed or renamed section is now reported as an unknown section, with
+a guess. No tree in the catalogue had one.
+
 ## [0.24.1] - 2026-10-02
 
 ### Changed

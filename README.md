@@ -16,7 +16,7 @@ student pastes it into whichever chat they already use.
 |---|---|---|
 | `engine/` | `engine.js`, `tree.css`, `tokens.css` and the per-tree page template. No user-facing text. | MIT |
 | `prompts/` | The instructions, in English. One file per contribution, each separately versioned — including `decomposition.json`, how a subject is broken into nodes, and `authoring.json`, the instruction a teacher pastes into a chat to build one. | CC BY 4.0 |
-| `prompts/subjects/` | What is true for one subject family but not another. Adds sections; does not replace them. | CC BY 4.0 |
+| `prompts/subjects/` | What is true for one subject family but not another. Replaces a general section with one written for the subject, so each point has one text. | CC BY 4.0 |
 | `languages/` | Everything that varies with language: interface strings, the words for the person learning (pupil, student, participant — inflected, so a tree only picks a key), and the language layer in the instructions. | CC BY 4.0 |
 | `starter/` | `tree.csv` — a tiny working tree that doubles as the format's documentation. | CC BY 4.0 |
 
@@ -39,9 +39,9 @@ Config rows go at the top, before the nodes. `tree.json` is gone as of 0.2.0.
 
 **The names a `prompt` row takes are the ones in `prompts/`**: the instruction's own key from
 `manifest.json` — `node`, `exam`, `motivation`, `lessonPlan` — and a section id from that
-instruction's `order`. A deployment publishes them all, section by section, at
+instruction's `groups`. A deployment publishes them all, section by section, at
 [aiskilltrees.com/prompts/](https://aiskilltrees.com/prompts/), and a composed instruction prints
-each section with its keyword in front of it — `tone: …` — so the name is also readable off the
+each section with its keyword in front of it — `tone: …` — under the heading of its group (`## Role and style`), so the name is also readable off the
 instruction itself. A section or instruction name
 that does not exist is an error, reported with its row and a guess at what was meant — for the
 same reason an unknown setting is: in a spreadsheet, silence is the dangerous response.

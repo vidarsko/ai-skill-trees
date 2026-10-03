@@ -7,6 +7,20 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.28.0] - 2026-10-03
+
+### Changed
+
+- **`factGuidance` asks whether the student wants to be tested or to learn** (practice tutor
+  2.1.0). Tested: 3–4 items at a time, both ways where that makes sense, bringing back the misses.
+  Learn: 3–4 items at a time, each given a one-sentence hook: a prerequisite if one fits, otherwise
+  something from the subject the student can be expected to know, otherwise a short mnemonic, and
+  then a test of those items before the next. `factGuidance` is now one of the sections every
+  subject family carries, for now with the general text in all of them.
+- **`noMemory` is shared** (`shared.json` 1.4.0). It was word for word the same in the tutor, the
+  test generator and the lesson planner, and now lives once in `shared.json`. The motivation
+  dialogue keeps its own, stronger wording. Test generator and lesson planner get a patch bump.
+
 ## [0.27.0] - 2026-10-03
 
 ### Changed

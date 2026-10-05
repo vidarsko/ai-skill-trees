@@ -7,6 +7,29 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.31.0] - 2026-10-05
+
+### Changed
+
+- **`tree.csv` is the whole tree; the engine no longer reads a `meta.json`.** "About the
+  course" is built from the config rows alone, so a tree looks the same on a website as the
+  same file downloaded. New optional config keys for it and for a catalogue: `subtitle`,
+  `courseCode`, `country`, `institution`, `division`, `subjectArea`, `keywords`
+  (semicolon-separated) and `updated`; `curriculum`, `author`, `authorUrl` and `license` as
+  before. The counts under "Size" are worked out from the nodes.
+- **`learner` is free text: the definite form the instructions and the panel use** ("the
+  student", "eleven", "kursdeltakeren"). It was a key (`pupil`, `student`, `participant`) into
+  four inflected forms in the language file, of which only the definite one was ever used.
+  The old keys still work through `learner.legacy` in each language file. The lead-ins are
+  templates (`{LearnerDefinite} can:`), and `{learner}`, `{learners}` and `{learnersDefinite}`
+  are gone. Decomposition model 2.12.0 documents the new form; the starter tree uses it.
+
+### Removed
+
+- **`course`.** It equalled `title` on every published tree. The key is still accepted and
+  ignored, so a file made before this release does not get an error.
+- `errorUnknownLearner`, since any learner text is valid.
+
 ## [0.30.0] - 2026-10-05
 
 ### Added

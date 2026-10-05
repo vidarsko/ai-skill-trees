@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.30.0] - 2026-10-05
+
+### Added
+
+- **A deployment can send readers to its own editor instead of the download button.** With
+  `<meta name="aist-editor" content="/path/{slug}/">` in the tree page's `<head>`, the menu shows
+  "Edit or download" as a link to that address, with `{slug}` filled in, in place of "Download
+  this tree". Without the tag, the button builds the download on the tree page as before. New
+  strings `download.edit` and `download.editTitle` in `en`, `nb` and `sv`.
+
 ## [0.29.0] - 2026-10-03
 
 ### Changed

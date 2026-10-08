@@ -7,6 +7,31 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.31.2] - 2026-10-08
+
+### Fixed
+
+- **Fact nodes are named wherever the node types are listed.** The authoring prompt (1.6.1)
+  asks for "a graph of its skills, concepts and facts to know"; the practice tutor (2.1.1)
+  names "the skill, concept or fact list" in its opening; the test generator (2.0.2) is based on
+  "skills, concepts and fact lists", covers "points (skills, concepts and fact lists)", and says
+  that each point is marked [skill], [concept] or [fact], as the engine writes them; the shared
+  `languageSwitch` (1.4.2) keeps "the names of nodes, terms and the items of fact lists"
+  untranslated. The families' copies of `conceptMix` and `factGuidance` change with the general
+  text, so every family gets a patch bump (2.4.1).
+- **The test generator asks for an aid level only on points that have one.** It asked for one
+  on every task, also when a fact node or another node had none.
+- **The tutor says where the test button is:** in the menu at the bottom left of the page, not
+  "at the bottom of the page".
+- **`factGuidance` and `noMemory` say the same thing about memory.** "You remember nothing
+  between conversations" became "This conversation will not be remembered".
+- **Decomposition model 2.12.2:** `aidsField` says the level belongs to the context, "not the
+  node"; the settings table calls the motivation conversation the motivation dialogue, as the
+  manifest does, writes "lesson plan generator", and lists the catalogue settings added in 0.31.0
+  (`courseCode`, `country`, `institution`, `division`, `subjectArea`, `keywords`), which a model
+  could not otherwise know exist. The authoring prompt says the section keywords are printed in
+  "the composed instruction", since the lesson plan goes to a teacher.
+
 ## [0.31.1] - 2026-10-08
 
 ### Fixed

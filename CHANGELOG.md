@@ -7,6 +7,37 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.32.0] - 2026-10-08
+
+### Added
+
+- **An error for a `tree.csv` without its first row.** If the first row does not name the
+  columns `type`, `name` and `description` (or `node_id` in `resources.csv`), the engine says so,
+  names the missing columns and shows what the first row says. Before, such a file was read
+  without an error and gave an empty tree. The authoring prompt (1.6.2) quotes the message as it
+  now reads. A file saved with semicolons needs no message: the CSV parser detects the separator.
+
+### Changed
+
+- **The interface says "learning goals", not "skills",** where any node is meant: the tagline,
+  the progress count, the help texts, the test button ("Make a test from mastered learning
+  goals", "Lag prøve av mestrede læringsmål", "Skapa prov av avklarade lärandemål"), the
+  mark-all buttons and the notes on aid levels, in `en`, `nb` and `sv`. The node-type labels
+  ("skill", "ferdighet") and the counts per type are unchanged. The tutor and the motivation
+  dialogue quote the button label, so they follow.
+- **Whoever is in the chat is "the user"** where the text reaches instructions for both a student
+  and a teacher. `outputLanguage` in the three language files addresses "the user" ("brukeren",
+  "användaren") and uses the learner's name only where the learner is named; `writingStyleGeneral`
+  (`shared.json` 1.4.3) says "How to write for the user". The rule is written into the comment in
+  `manifest.json`.
+- **"Learning goal" wherever several nodes are meant.** The test generator (2.0.3) speaks of
+  learning goals and [skill], [concept] and [fact] goals, not "points", as the lesson planner
+  does; `aidsMultiple` reads "Where a learning goal is assessed in several contexts"; the lesson
+  planner (3.1.1) says "each learning goal's level".
+- **The motivation dialogue (2.0.1) is subject-neutral:** training your focus is "every bit as
+  useful as what you learn in the subject itself", not "as being able to do the calculations".
+  The families' copies change with the general text (2.4.2).
+
 ## [0.31.2] - 2026-10-08
 
 ### Fixed

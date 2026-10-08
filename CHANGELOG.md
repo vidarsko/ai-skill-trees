@@ -7,6 +7,21 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.31.1] - 2026-10-08
+
+### Fixed
+
+- **The example rows in the decomposition model are correct** (decomposition 2.12.1). The
+  concept `fraction-decimal` said that every decimal is a fraction, which π is not, and defined a
+  fraction as one whole divided into equal parts, which does not cover 3/4 or 7/3. It now reads
+  "a number a/b, which means a parts when one whole is divided into b equal parts", and the
+  decimal form of a fraction "either ends or repeats". Aid level 2 no longer allows a spreadsheet:
+  from spring 2027 the Norwegian Part 2 is answered by hand, with a simple scientific calculator,
+  notes on paper and printed aids. A model copies the example, so both errors reached new trees.
+- **The shared sections say "the user", not "the reader"** (`shared.json` 1.4.1), in
+  `languageSwitch` and `courseSpecifics`. The same text goes into the lesson planner, where the
+  person in the chat is the teacher, so "the student" would not fit either.
+
 ## [0.31.0] - 2026-10-05
 
 ### Changed

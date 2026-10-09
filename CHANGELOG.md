@@ -7,6 +7,15 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.33.0] - 2026-10-09
+
+### Changed
+
+- **A tree without fact nodes is pointed out to the teacher.** The decomposition model's
+  checklist (2.13.0) says to tell the teacher and name the closest candidate, rather than
+  requiring one. The mathematics block (2.5.0) says where facts earn a node in mathematics:
+  common fractions as decimals and percentages, unit prefixes, the squares up to 15.
+
 ## [0.32.0] - 2026-10-08
 
 ### Added

@@ -34,8 +34,17 @@ column says which a row is:
 | `skill` / `concept` | a node in the graph | the columns mean what they always did |
 | `config` | a setting | `name` = key, `description` = value |
 | `prompt` | an instruction the teacher rewrote | `topic` = which instruction (blank = all), `name` = which section, `instruction` = the text |
+| `resource` | an exam question, a textbook section, a video … | `topic` = group, `name` = title, `description` = link (optional), `depends_on` = the nodes it belongs to |
 
 Config rows go at the top, before the nodes. `tree.json` is gone as of 0.2.0.
+
+**A resource has no `id`**, because nothing points to one: it is the resource that points to its
+nodes, through `depends_on`, and one row can belong to several nodes. The student sees a node's
+resources under it, and every resource with its nodes under "Resources" in the tree's menu. A
+resource that belongs to no node, one that names a node that does not exist, and the same title
+and link on two rows are errors. Until 0.34.0 the resources lived in a separate `resources.csv`,
+one row per node and resource; `tools/migrate-resources-to-rows.py` converts one, and so does the
+builder when it is handed both files.
 
 **The names a `prompt` row takes are the ones in `prompts/`**: the instruction's own key from
 `manifest.json` — `node`, `exam`, `motivation`, `lessonPlan` — and a section id from that
@@ -84,8 +93,7 @@ Text is split by what it varies with, not by file type.
 | `prompts/*.json` | nothing | The pedagogy. English is the source. |
 | `prompts/subjects/<family>.json` | subject family | What applies to mathematics but not to social studies. |
 | `languages/<code>.json` | language | Interface strings, and the language layer in the instructions. |
-| `<tree>/tree.csv` | one subject | Everything that tree owns: the nodes, its settings, and any instruction the teacher rewrote. |
-| `<tree>/resources.csv` | one subject | Optional: resources per node — exam questions, textbook sections, videos. Columns `node_id`, `group`, `label`, `url`, all but `node_id` free text. |
+| `<tree>/tree.csv` | one subject | Everything that tree owns: the nodes, its settings, any instruction the teacher rewrote, and its resources — exam questions, textbook sections, videos. A resource is a row of type `resource`: `topic` is the group, `name` the title, `description` the link, and `depends_on` the nodes it belongs to, one or several. Until 0.34.0 the resources were a separate `resources.csv`; `tools/migrate-resources-to-rows.py` converts one. |
 
 **A new language costs one file.** `languages/<code>.json` — not a copy of the engine, not a new
 page template, not a line of JavaScript.

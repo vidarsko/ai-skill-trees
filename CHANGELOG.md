@@ -7,6 +7,49 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.34.0] - 2026-10-16
+
+### Changed
+
+- **Resources are rows in `tree.csv`, and `resources.csv` is gone.** A tree is now one file
+  in full. A resource is a row of type `resource`: `topic` is the group, `name` the title,
+  `description` the link, which is optional, and `depends_on` the nodes it belongs to. It has no
+  `id`, because nothing points to it. One row can belong to several nodes, so a link used under
+  three nodes is written once: the 7,621 rows in the catalogue's `resources.csv` files became
+  6,900 resource rows. `features.resources` is no longer needed.
+- **Decomposition model 2.14.0:** the table of row types names `resource`, the settings table no
+  longer lists `features.resources`, and the example rows end with a resource. A model is told
+  to write resource rows only for resources the teacher gives it, never to invent a link, and to
+  list every node a resource belongs to on one row rather than repeat it.
+- **The starter tree has two resources**, one with a link and one without, so it shows the whole
+  format again.
+
+### Added
+
+- **"Resources" in the tree's menu** lists every resource in the tree under its group, with the
+  learning goals it belongs to under it. A click on a goal goes to it in the map. A filter
+  searches the titles, groups, links and the names of the goals. The button is there only when
+  the tree has resources.
+- **Errors for resource rows that do nothing or say the same thing twice:** a resource with no
+  node in `depends_on`, a node id there that does not exist (with a guess at what was meant), a
+  row with neither title nor link, and the same title and link on two rows. The same link with
+  different titles is allowed: an exam is one PDF with many questions.
+- **`tools/migrate-resources-to-rows.py`** moves a tree's `resources.csv` into its `tree.csv`,
+  merges duplicates into one row with all their nodes, removes `features.resources`, and leaves
+  every other line of the file as it was.
+
+### Fixed
+
+- **The "Search" button in the menu has the same style as the buttons around it.** It had no
+  style of its own since it was added.
+
+### Upgrading
+
+- A tree that sets `features.resources` to `true` gets an error saying that `resources.csv` is no
+  longer read. Open the tree in the builder with `resources.csv` alongside, which converts it, or
+  run `tools/migrate-resources-to-rows.py` on the folder. `features.resources` set to `false` is
+  accepted and ignored.
+
 ## [0.33.0] - 2026-10-09
 
 ### Changed

@@ -39,7 +39,6 @@
     "errorNoTopic": "Noden »{id}« saknar tema och hamnar i samlingskolumnen »{topic}«.",
     "errorUnknownResourceNode": "Rad {row} i tree.csv: resursen hänvisar till nod-id:t »{id}« i depends_on, som inte finns.",
     "errorExamsRenamed": "Rad {row} i tree.csv: inställningen »features.exams« är från före version 0.22.0. Resurser är nu rader i tree.csv med typen »resource«: topic = grupp, name = titel, description = länk, depends_on = noderna. Ta bort raden, och öppna trädet i byggaren för att göra om en gammal exams.csv. Ingenting tillämpades.",
-    "errorResourcesMoved": "Rad {row} i tree.csv: »features.resources« används inte längre, och resources.csv läses inte. Resurser är nu rader i tree.csv med typen »resource«: topic = grupp, name = titel, description = länk, depends_on = noderna. Öppna trädet i byggaren med resources.csv bredvid, så gör den om filen åt dig. Ta sedan bort den här raden.",
     "errorResourceEmpty": "Rad {row} i tree.csv: resursen har varken titel (name) eller länk (description).",
     "errorResourceNoNode": "Rad {row} i tree.csv: resursen »{label}« hör inte till någon nod. Skriv ett eller flera nod-id:n i depends_on, eller ta bort raden.",
     "errorResourceDuplicate": "Rad {row} i tree.csv: resursen »{label}« är densamma som på rad {first}. Gör dem till en rad, med alla noderna i depends_on.",

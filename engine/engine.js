@@ -798,13 +798,10 @@ function buildConfig(entries) {
       return;
     }
     /* Fra 0.34.0 står ressursene som resource-rader i tree.csv, og
-       resources.csv leses ikke. `true` betyr at treet har en fil som nå
-       blir oversett, og det skal læreren få vite; `false` sa aldri noe og
-       godtas stille, som `course`. */
-    if (entry.key === 'features.resources') {
-      if (/^true$/i.test(entry.value)) pushError('errorResourcesMoved', { row: entry.row });
-      return;
-    }
+       resources.csv leses ikke. Innstillingen gjør ingenting lenger, men
+       godtas stille, som `course`: et eldre tre skal ikke få en feil for
+       den. */
+    if (entry.key === 'features.resources') return;
     if (!configKeyKnown(entry.key)) {
       const guess = nearestConfigKey(entry.key);
       pushError('errorUnknownConfig', { key: entry.key, row: entry.row, guess: guess });

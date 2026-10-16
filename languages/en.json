@@ -39,7 +39,6 @@
     "errorNoTopic": "Node “{id}” has no topic, and ends up in the catch-all column “{topic}”.",
     "errorUnknownResourceNode": "Row {row} of tree.csv: the resource refers to the node id “{id}” in depends_on, which does not exist.",
     "errorExamsRenamed": "Row {row} of tree.csv: the setting “features.exams” is from before version 0.22.0. Resources are now rows in tree.csv with the type “resource”: topic = group, name = title, description = link, depends_on = the nodes. Delete the row, and open the tree in the builder to convert an old exams.csv. Nothing was applied.",
-    "errorResourcesMoved": "Row {row} of tree.csv: “features.resources” is no longer used, and resources.csv is no longer read. Resources are now rows in tree.csv with the type “resource”: topic = group, name = title, description = link, depends_on = the nodes. Open the tree in the builder with resources.csv alongside, and it converts the file for you. Then delete this row.",
     "errorResourceEmpty": "Row {row} of tree.csv: the resource has neither a title (name) nor a link (description).",
     "errorResourceNoNode": "Row {row} of tree.csv: the resource “{label}” belongs to no node. Put one or more node ids in depends_on, or delete the row.",
     "errorResourceDuplicate": "Row {row} of tree.csv: the resource “{label}” is the same as on row {first}. Make it one row, with all the nodes in depends_on.",

@@ -45,10 +45,9 @@ visible at aiskilltrees.com.
 
 ### Upgrading
 
-- A tree that sets `features.resources` to `true` gets an error saying that `resources.csv` is no
-  longer read. Open the tree in the builder with `resources.csv` alongside, which converts it, or
-  run `tools/migrate-resources-to-rows.py` on the folder. `features.resources` set to `false` is
-  accepted and ignored.
+- `resources.csv` is no longer read. Open the tree in the builder with `resources.csv` alongside,
+  which converts it, or run `tools/migrate-resources-to-rows.py` on the folder.
+  `features.resources` does nothing and is accepted without an error.
 
 ## [0.33.0] - 2026-10-09
 

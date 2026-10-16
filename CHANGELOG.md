@@ -17,10 +17,10 @@ visible at aiskilltrees.com.
   `id`, because nothing points to it. One row can belong to several nodes, so a link used under
   three nodes is written once: the 7,621 rows in the catalogue's `resources.csv` files became
   6,900 resource rows. `features.resources` is no longer needed.
-- **Decomposition model 2.14.0:** the table of row types names `resource`, the settings table no
-  longer lists `features.resources`, and the example rows end with a resource. A model is told
-  to write resource rows only for resources the teacher gives it, never to invent a link, and to
-  list every node a resource belongs to on one row rather than repeat it.
+- **Decomposition model 2.14.0:** the table of row types names `resource`, and the settings
+  table no longer lists `features.resources`. A model writes resource rows only when the teacher
+  asks for them or gives it resources, and does not offer them; then it writes one row per
+  resource, with all its nodes, and never invents a link.
 - **The starter tree has two resources**, one with a link and one without, so it shows the whole
   format again.
 

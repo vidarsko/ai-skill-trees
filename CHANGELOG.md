@@ -7,6 +7,15 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.34.1] - 2026-10-16
+
+### Changed
+
+- **Resources are sorted alphabetically within each group**, with numbers read as numbers, in
+  the node's panel and in "Resources": "task 2b" comes before "task 10", and a resource added
+  later lands where it belongs instead of last. The groups keep the order they first appear in
+  the file. Exam titles written year first ("2026 Spring, Part 1, task 3") then sort by year.
+
 ## [0.34.0] - 2026-10-16
 
 ### Changed

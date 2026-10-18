@@ -7,6 +7,14 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.34.2] - 2026-10-18
+
+### Fixed
+
+- **The label beside the minutes field in "Build a lesson plan" follows the tree's language.**
+  It was hard-coded as the Norwegian "Lengde" in every tree; it now reads "Length", "Lengde" or
+  "Längd" from `lesson.minutesLabel` in the language file.
+
 ## [0.34.1] - 2026-10-16
 
 ### Changed

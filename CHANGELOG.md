@@ -7,6 +7,34 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.35.0] - 2026-10-22
+
+### Changed
+
+- **Lesson plan 4.0.0: the whole lesson is one section, `plan`.** The starter, the worked
+  rounds, the independent practice, the diagnostic question and the retrieval were five
+  sections (`structure`, `starter`, `examplePair`, `diagnostic`, `recall`) that referred to each
+  other, so a teacher who wanted a different lesson had to rewrite all of them and keep them
+  consistent. They are now numbered parts of one text, and no other section names a part of
+  the lesson: `format` no longer lists what goes on the board, and `conceptAdaptation`,
+  `factAdaptation` and `prerequisites` say how to teach without pointing at a particular part.
+  Rewriting `plan` alone is enough to change the lesson. The wording of each part is
+  otherwise unchanged. A `prompt` row that named one of the five old sections is now reported
+  as an unknown section.
+- **Every subject family writes its own `plan`** (mathematics 2.6.0, the others 2.5.0), with
+  what it had in the old sections in the same place: mathematics' fixed minutes and example
+  starter, the natural sciences' example starter and observation-first rounds, and so on.
+
+### Added
+
+- **`extra` at the end of every student-facing instruction** (practice tutor 2.2.0, test
+  generator 2.1.0, motivation 2.1.0, lesson plan 4.0.0), under the heading "Extra". It is empty
+  and leaves no trace in the instruction until a tree fills it with a `prompt` row, so a
+  teacher has one obvious place for anything they want to add without rewriting a section.
+  A row with an empty `topic` puts the same text in all four.
+- **Each group in an instruction module has a `description`**, and `AIST_EFFECTIVE_CONFIG`
+  passes the groups on (`instructions[].groups`), so the editor can show what each part holds.
+
 ## [0.34.2] - 2026-10-18
 
 ### Fixed

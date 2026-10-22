@@ -984,6 +984,9 @@ function describeInstructions() {
       id: name,
       title: entry.title || spec.title || name,
       version: spec.version || '',
+      /* Gruppene med beskrivelsen modulen gir dem, slik at verktøyet kan
+         vise «The lesson» som én ting å åpne, med hva som står i den. */
+      groups: sectionGroups(name).map(g => ({ title: g.title || '', description: g.description || '' })),
       sections: sectionOrder(name).map(id => {
         const def = sectionDefault(name, id);
         const condition = sectionCondition(name, id);
@@ -1995,8 +1998,9 @@ const lessonSelection = new Set();
 
 // Lengden økta får hvis læreren ikke oppgir en. Fra 0.27.0 regner motoren
 // ikke ut noen timeplan: hvordan økta deles opp, står i seksjonen
-// `structure` i lesson-plan.json, som hver fagfamilie skriver for seg
-// (matematikk med 7 minutter oppstart og 5 minutter gjenhenting). Vidar,
+// `plan` i lesson-plan.json (fram til 4.0.0 `structure`), som hver
+// fagfamilie skriver for seg (matematikk med 7 minutter oppstart og 5
+// minutter gjenhenting). Vidar,
 // 2026-10-03: timeplanleggeren skal ikke bestå av en håndfull variabler.
 const LESSON_DEFAULT_MINUTES = 45;
 

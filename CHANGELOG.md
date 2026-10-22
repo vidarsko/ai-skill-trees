@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.35.2] - 2026-10-22
+
+### Fixed
+
+- **A tree without a subject family gets the default `plan` again**, like every other section
+  a family replaces. 0.35.0 made `plan` family-only, which broke that convention: a tree with no
+  `subjectFamily` got an error (0.35.0) or could not make a lesson plan at all (0.35.1). The
+  general text in `lesson-plan.json` is the one from 0.35.0's first draft, the same parts as the
+  families' without their subject-specific additions. `familyOnly`, the reminder in
+  `AIST_EFFECTIVE_CONFIG` and the disabled button are gone. Decomposition model 2.15.2 no
+  longer says a tree without a family cannot make lesson plans.
+
 ## [0.35.1] - 2026-10-22
 
 ### Fixed

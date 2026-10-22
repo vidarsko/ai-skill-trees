@@ -784,6 +784,23 @@ function validatePromptRows() {
                 { section: id, row: row, guess: nearest(id, known) });
     }
   });
+  validateFamilyOnly(names);
+}
+
+/* En seksjon modulen lister i `familyOnly` har ingen generell tekst: bare
+   fagfamiliene skriver den (fra 0.35.0 `plan` i undervisningsplanen, fordi
+   planen for en økt ER fagets didaktikk). Et tre uten familie og uten egen
+   prompt-rad for seksjonen ville fått en instruks der den bare manglet -
+   uten at noen merket det. Derfor en feil, ikke en stille tom seksjon. */
+function validateFamilyOnly(names) {
+  names.forEach(name => {
+    const spec = CORE.prompts[name] || {};
+    (spec.familyOnly || []).forEach(id => {
+      if (familyText(name, id) != null) return;
+      if (PROMPT_ROWS[name + '.' + id] != null || PROMPT_ROWS['*.' + id] != null) return;
+      pushError('errorFamilyOnlySection', { section: id, instruction: name });
+    });
+  });
 }
 
 function buildConfig(entries) {

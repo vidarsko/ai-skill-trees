@@ -21,9 +21,16 @@ visible at aiskilltrees.com.
   Rewriting `plan` alone is enough to change the lesson. The wording of each part is
   otherwise unchanged. A `prompt` row that named one of the five old sections is now reported
   as an unknown section.
-- **Every subject family writes its own `plan`** (mathematics 2.6.0, the others 2.5.0), with
-  what it had in the old sections in the same place: mathematics' fixed minutes and example
-  starter, the natural sciences' example starter and observation-first rounds, and so on.
+- **`plan` comes only from the subject family.** It is `null` in `lesson-plan.json` and listed
+  in its new `familyOnly`: how a lesson is built is the subject's own didactics, so there is no
+  general default. Every family writes its own (mathematics 2.6.0, the others 2.5.0), with what
+  it had in the old sections in the same place: mathematics' fixed minutes and example starter,
+  the natural sciences' example starter and observation-first rounds, and so on. A tree with no
+  `subjectFamily` and no `lessonPlan.plan` prompt row gets an error saying so, instead of a
+  lesson plan with no plan in it. Every tree in the catalogue has a family.
+- **Decomposition model 2.15.0:** `subjectFamily` is to be set on every tree, with the reason.
+- **`movedTo` in `lesson-plan.json`** names the section each of the five old sections went
+  into, so /prompts/ can show a comparison with 0.34.2 as a move rather than a deletion.
 
 ### Added
 

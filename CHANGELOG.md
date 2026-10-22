@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.35.1] - 2026-10-22
+
+### Fixed
+
+- **A new tree without a subject family no longer shows an error.** In 0.35.0 a tree with no
+  `subjectFamily` (and no `lessonPlan.plan` prompt row) got a red validation error, so a tree
+  started from scratch showed one before the teacher had done anything. It is no longer an
+  error in the file: "Build a lesson plan" is unavailable in such a tree and says that a
+  subject family is needed, because the plan for the lesson comes from it.
+  `AIST_EFFECTIVE_CONFIG.missingFamilySections` lists what is missing, so the editor can remind
+  the teacher. Decomposition model 2.15.1 says the same. No tree in the catalogue was affected.
+
 ## [0.35.0] - 2026-10-22
 
 ### Changed

@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.37.0] - 2026-10-23
+
+### Added
+
+- **✓ and ✕ for each topic and for the whole list** in "Show all learning goals" and the
+  lesson planner. Each topic heading has the same two buttons as the columns in the map, and
+  under the introduction are two for every goal at once. In "Show all learning goals" they mark
+  or unmark mastery ("Mark all as mastered", "Remove all mastered marks"); removing every mark
+  asks first, since it clears the student's progress. In the lesson planner they check or
+  uncheck the goals for the lesson ("Check all", "Uncheck all") and leave mastery alone. New
+  strings `goalIndex.markAllButton`, `goalIndex.clearAllButton`, `goalIndex.clearAllConfirm`
+  and `lessonPlanner.selectAll`, `deselectAll`, `selectTopic`, `deselectTopic`.
+
 ## [0.36.0] - 2026-10-23
 
 ### Changed

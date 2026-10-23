@@ -135,10 +135,10 @@
     "lessonPlanner": {
       "button": "Lektionsplanerare (för lärare)",
       "title": "Välj lärandemålen för en lektion och kopiera en AI-instruktion för en färdig lektionsplanering",
-      "selectAll": "Välj alla",
-      "deselectAll": "Avmarkera alla",
-      "selectTopic": "Välj alla lärandemål i «{topic}»",
-      "deselectTopic": "Avmarkera alla lärandemål i «{topic}»",
+      "selectAll": "Kryssa i alla",
+      "deselectAll": "Ta bort alla kryss",
+      "selectTopic": "Kryssa i alla lärandemål i «{topic}»",
+      "deselectTopic": "Ta bort krysset för alla lärandemål i «{topic}»",
       "heading": "Lektionsplanerare",
       "intro": "Kryssa i de lärandemål nästa lektion ska täcka, ställ in lektionens längd, och skapa en färdig lektionsplanering längst ner. Kryssen här gäller bara den här lektionen: de markerar inget som avklarat, och de försvinner när du laddar om sidan."
     },

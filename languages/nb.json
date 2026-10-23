@@ -135,10 +135,10 @@
     "lessonPlanner": {
       "button": "Undervisningsplanlegger (for lærere)",
       "title": "Velg læringsmålene for en økt og kopier en KI-instruks for et ferdig undervisningsopplegg",
-      "selectAll": "Velg alle",
-      "deselectAll": "Fjern alle valg",
-      "selectTopic": "Velg alle læringsmål i «{topic}»",
-      "deselectTopic": "Fjern valget av alle læringsmål i «{topic}»",
+      "selectAll": "Kryss av alle",
+      "deselectAll": "Fjern alle kryss",
+      "selectTopic": "Kryss av alle læringsmål i «{topic}»",
+      "deselectTopic": "Fjern krysset for alle læringsmål i «{topic}»",
       "heading": "Undervisningsplanlegger",
       "intro": "Huk av de læringsmålene neste økt skal dekke, sett lengden på økta, og lag et ferdig undervisningsopplegg nederst. Avkryssingen her gjelder bare denne økta: den markerer ingenting som mestret, og den forsvinner når du laster siden på nytt."
     },

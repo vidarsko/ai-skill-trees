@@ -7,6 +7,24 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.36.0] - 2026-10-23
+
+### Changed
+
+- **"Show all learning goals" ticks goals as mastered.** The boxes on the left of the list are
+  now the same tick as the box on the node in the map, so a teacher can go down the list in
+  order and mark what the class has been through. The statuses (✓, ◇, ⊘) update at once, and
+  the list keeps its place. Until now the boxes there picked goals for a lesson plan, which
+  left no way to mark mastery from the list.
+
+### Added
+
+- **"Lesson planner (for teachers)"**, a separate entry in the menu, under "Show all learning
+  goals". It opens the same list, where the boxes pick the goals for the next lesson, with the
+  length and "Build a lesson plan" at the bottom as before. The picks are still only for that
+  lesson: they mark nothing as mastered and are gone on reload. New strings `lessonPlanner.*`
+  and `goalIndex.markAria` in every language; the help texts say where each one is.
+
 ## [0.35.2] - 2026-10-22
 
 ### Fixed

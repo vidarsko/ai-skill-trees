@@ -14,9 +14,10 @@ visible at aiskilltrees.com.
 - **"⚠ Safety" at the end of the top line**, in red after "Make your own tree: aiskilltrees.com".
   It opens a window that says what a genuine tree never does and what to look out for: a tree
   never asks for personal details, who sent you the tree matters most, an .html file is a web
-  page that can show anything (a fake login page included), check links before clicking, read
-  an instruction before pasting it (prompt injection), you decide what you tell the chat, and
-  for teachers, how to open a tree from a colleague in the builder. New strings `safety.label`,
+  page that can show anything (a fake login page included), check links before clicking, instructions
+  can be tampered with (prompt injection), you decide what you tell the chat (and the school
+  often has an AI service where privacy is protected), and for teachers, that a tree from a
+  colleague can be opened in the builder to be sure. New strings `safety.label`,
   `safety.heading`, `safety.lead` and `safety.sections`.
 
 ### Security

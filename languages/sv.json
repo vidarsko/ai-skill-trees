@@ -149,18 +149,18 @@
         },
         {
           "id": "injection",
-          "heading": "Läs instruktionen innan du klistrar in den",
-          "body": "AI-instruktionen du kopierar är text skriven av den som gjorde trädet, och du klistrar in den direkt i en AI-chatt. Den som gör ett träd kan skriva vad som helst i den, också order som får chatten att bete sig annorlunda än du tror: ge dig fel svar, skicka dig till en annan webbplats eller fråga om saker den inte har med att göra. Det kallas promptinjektion. Skumma igenom texten innan du klistrar in den, och lita inte blint på det chatten säger."
+          "heading": "Instruktionerna kan vara manipulerade",
+          "body": "AI-instruktionen du kopierar är text skriven av den som gjorde trädet, och du klistrar in den direkt i en AI-chatt. Den som gör ett träd kan skriva vad som helst i den, också order som får chatten att bete sig annorlunda än du tror: ge dig fel svar, skicka dig till en annan webbplats eller fråga om saker den inte har med att göra. Det kallas promptinjektion. Du kan gärna skumma igenom texten innan du klistrar in den, och du bör inte lita blint på det chatten säger."
         },
         {
           "id": "chat",
           "heading": "Du bestämmer vad du berättar för chatten",
-          "body": "Vissa instruktioner ber chatten att lära känna dig, till exempel vad du tycker om ämnet och vad du är bra på. Det kan du svara på så mycket eller lite du vill. Men ingen instruktion behöver ditt namn, dina kontaktuppgifter eller lösenord. Ber chatten om sådant, svara inte, och säg till din lärare. Kom också ihåg att det du skriver i en AI-chatt sparas hos företaget som driver chatten."
+          "body": "Vissa instruktioner ber chatten att lära känna dig, till exempel vad du tycker om ämnet och vad du är bra på. Det kan du svara på så mycket eller lite du vill. Men ingen instruktion behöver ditt namn, dina kontaktuppgifter eller lösenord. Ber chatten om sådant, svara inte, och säg till din lärare. Kom också ihåg att det du skriver i en AI-chatt sparas hos företaget som driver chatten. Din skola har ofta tillgång till en AI-tjänst där din integritet är skyddad. Fråga din lärare, och använd den om ni har en."
         },
         {
           "id": "teachers",
           "heading": "För lärare: ett träd från en kollega",
-          "body": "Har du fått ett träd från någon annan, öppna det i byggaren på aiskilltrees.com/make-your-own/ innan du delar det med eleverna. Byggaren tar bara ut kalkylarket ur filen och gör en ny, ren fil av det, och där kan du läsa varje instruktion som trädet använder."
+          "body": "Har du fått ett träd från någon annan kan du öppna det i byggaren på aiskilltrees.com/make-your-own/ innan du delar det med eleverna, för att vara säker. Byggaren tar bara ut kalkylarket ur filen och gör en ny, ren fil av det, och där kan du läsa varje instruktion som trädet använder."
         }
       ]
     },

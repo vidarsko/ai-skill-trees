@@ -149,18 +149,18 @@
         },
         {
           "id": "injection",
-          "heading": "Read the instruction before you paste it",
-          "body": "The AI instruction you copy is text written by whoever made the tree, and you paste it straight into an AI chat. Whoever makes a tree can write anything in it, including orders that make the chat behave differently from what you expect: give you wrong answers, send you to another website or ask about things that are none of its business. This is called prompt injection. Skim the text before you paste it, and do not trust the chat blindly."
+          "heading": "Instructions can be tampered with",
+          "body": "The AI instruction you copy is text written by whoever made the tree, and you paste it straight into an AI chat. Whoever makes a tree can write anything in it, including orders that make the chat behave differently from what you expect: give you wrong answers, send you to another website or ask about things that are none of its business. This is called prompt injection. You may want to skim the text before you paste it, and you should not trust the chat blindly."
         },
         {
           "id": "chat",
           "heading": "You decide what you tell the chat",
-          "body": "Some instructions ask the chat to get to know you, for example how you feel about the subject and what you are good at. You can answer as much or as little as you like. But no instruction needs your name, contact details or passwords. If the chat asks for anything like that, do not answer, and tell your teacher. Remember too that what you write in an AI chat is stored by the company that runs the chat."
+          "body": "Some instructions ask the chat to get to know you, for example how you feel about the subject and what you are good at. You can answer as much or as little as you like. But no instruction needs your name, contact details or passwords. If the chat asks for anything like that, do not answer, and tell your teacher. Remember too that what you write in an AI chat is stored by the company that runs the chat. Your school often has access to an AI service where your privacy is protected. Ask your teacher, and use it if you have one."
         },
         {
           "id": "teachers",
           "heading": "For teachers: a tree from a colleague",
-          "body": "If you received a tree from someone else, open it in the builder at aiskilltrees.com/make-your-own/ before you share it with your students. The builder only takes the spreadsheet out of the file and makes a new, clean file from it, and there you can read every instruction the tree uses."
+          "body": "If you received a tree from someone else, you can open it in the builder at aiskilltrees.com/make-your-own/ before you share it with your students, to be sure. The builder only takes the spreadsheet out of the file and makes a new, clean file from it, and there you can read every instruction the tree uses."
         }
       ]
     },

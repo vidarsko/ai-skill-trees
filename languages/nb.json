@@ -149,18 +149,18 @@
         },
         {
           "id": "injection",
-          "heading": "Les instruksen før du limer den inn",
-          "body": "KI-instruksen du kopierer, er tekst skrevet av den som laget treet, og du limer den rett inn i en KI-chat. Den som lager et tre, kan skrive hva som helst i den, også ordre som får chatten til å oppføre seg annerledes enn du tror: gi deg feil svar, sende deg til en annen nettside eller spørre om ting den ikke har noe med. Det kalles instruksinjeksjon. Skum gjennom teksten før du limer den inn, og stol ikke blindt på det chatten sier."
+          "heading": "Instruksene kan være tuklet med",
+          "body": "KI-instruksen du kopierer, er tekst skrevet av den som laget treet, og du limer den rett inn i en KI-chat. Den som lager et tre, kan skrive hva som helst i den, også ordre som får chatten til å oppføre seg annerledes enn du tror: gi deg feil svar, sende deg til en annen nettside eller spørre om ting den ikke har noe med. Det kalles instruksinjeksjon. Du kan gjerne skumme gjennom teksten før du limer den inn, og du bør ikke stole blindt på det chatten sier."
         },
         {
           "id": "chat",
           "heading": "Du bestemmer hva du forteller chatten",
-          "body": "Noen instrukser ber chatten bli kjent med deg, for eksempel hva du synes om faget og hva du er god til. Det kan du svare på så mye eller lite du vil. Men ingen instruks trenger navnet ditt, kontaktinformasjon eller passord. Ber chatten om slikt, så ikke svar, og si fra til læreren din. Husk også at det du skriver i en KI-chat, lagres hos selskapet som eier chatten."
+          "body": "Noen instrukser ber chatten bli kjent med deg, for eksempel hva du synes om faget og hva du er god til. Det kan du svare på så mye eller lite du vil. Men ingen instruks trenger navnet ditt, kontaktinformasjon eller passord. Ber chatten om slikt, så ikke svar, og si fra til læreren din. Husk også at det du skriver i en KI-chat, lagres hos selskapet som eier chatten. Skolen din har ofte tilgang til en KI-tjeneste der personvernet er ivaretatt. Spør læreren din, og bruk den hvis dere har en."
         },
         {
           "id": "teachers",
           "heading": "For lærere: et tre fra en kollega",
-          "body": "Har du fått et tre fra noen andre, åpne det i byggeren på aiskilltrees.com/make-your-own/ før du deler det med elevene. Byggeren henter bare regnearket ut av fila og lager en ny, ren fil av det, og der kan du lese hver instruks treet bruker."
+          "body": "Har du fått et tre fra noen andre, kan du åpne det i byggeren på aiskilltrees.com/make-your-own/ før du deler det med elevene, for å være sikker. Byggeren henter bare regnearket ut av fila og lager en ny, ren fil av det, og der kan du lese hver instruks treet bruker."
         }
       ]
     },

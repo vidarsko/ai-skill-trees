@@ -7,6 +7,32 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [Unreleased]
+
+### Added
+
+- **"⚠ Safety" at the end of the top line**, in red after "Make your own tree: aiskilltrees.com".
+  It opens a window that says what a genuine tree never does and what to look out for: a tree
+  never asks for personal details, who sent you the tree matters most, an .html file is a web
+  page that can show anything (a fake login page included), check links before clicking, read
+  an instruction before pasting it (prompt injection), you decide what you tell the chat, and
+  for teachers, how to open a tree from a colleague in the builder. New strings `safety.label`,
+  `safety.heading`, `safety.lead` and `safety.sections`.
+
+### Security
+
+- **Links from the spreadsheet must start with `http://`, `https://` or `mailto:`.** Resource
+  links and `authorUrl` were made clickable whatever they held, `javascript:` included, so a
+  tree could run its own code when a link was clicked, also in the builder's preview on
+  aiskilltrees.com. Now a link that does not pass is shown as plain text and reported as an
+  error: new strings `errorResourceUrl` and `errorLinkUrl`. `basedOn.<n>.url` already had the
+  check and now shares it. No published tree is affected.
+
+### Changed
+
+- The help window and the safety window are built by one function, `ensureTextModal()`, and
+  styled by shared classes (`.text-overlay`, `.text-modal` …) instead of `#help-*` ids.
+
 ## [0.37.0] - 2026-10-23
 
 ### Added

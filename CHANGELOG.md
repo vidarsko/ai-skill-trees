@@ -7,6 +7,34 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.39.0] - 2026-11-04
+
+### Added
+
+- **"Lesson type" in the lesson planner**, a drop-down next to the length: Introduction (the
+  default, the lesson as before), Practice, Review and Other. Only the chosen type's plan is in
+  the instruction. Practice gives one problem set per goal: the hard parts on their own, small
+  variations, less and less support, and a problem with a purpose. Review is retrieval without
+  notes, mixed across the goals, checking, teaching again where needed and mixed practice. Other
+  plans what the teacher writes under `extra`, and asks the teacher first if nothing is there.
+  New conditions `lessonIntro`, `lessonPractice`, `lessonReview` and `lessonOther`; new strings
+  `lesson.typeLabel`, `lesson.typeAria` and `lesson.types`.
+- **`skillAdaptation`** in the lesson plan, beside `conceptAdaptation` and `factAdaptation`: a
+  short paragraph on how goals marked [skill] are worked on, shown when the lesson has one (new
+  condition `hasSkills`). Every family carries `skillAdaptation` and `factAdaptation` as well,
+  verbatim copies for now, so the three read alike in the builder.
+
+### Changed
+
+- **`lessonPlan` 5.0.0: `plan` is now `planIntro`**, beside the new `planPractice`,
+  `planReview` and `planOther`. The families' own `plan` became `planIntro` (family versions
+  bumped); the three new sections are general in every family for now. A tree with a prompt row
+  for `lessonPlan.plan` must rename it. "Reply straight away, no clarifying questions" moved from
+  `role` into each plan section, since `planOther` is the one that may ask. Every plan section
+  opens with "This prompt is used for a … lesson", so a teacher reading one sees that there are
+  others, and then the reply-straight-away line. `goals` no longer
+  says "in this order", which did not hold for a review lesson.
+
 ## [0.38.0] - 2026-10-29
 
 ### Added

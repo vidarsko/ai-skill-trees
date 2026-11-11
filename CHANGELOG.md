@@ -7,13 +7,25 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.40.2] - 2026-11-11
+
+### Fixed
+
+- **"Old downloaded trees still import" installs the browser without the system packages when
+  they cannot be fetched.** On 0.40.0 and 0.40.1 the check never reached the engine: the runner
+  could not resolve Ubuntu's package mirror (`Temporary failure resolving
+  'azure.archive.ubuntu.com'`), so `playwright install --with-deps` failed, and a re-run failed
+  the same way. The runner images already carry what Chromium needs. Nothing else changed; the
+  engine is the same as in 0.40.0.
+
 ## [0.40.1] - 2026-11-11
 
 ### Fixed
 
-- **The workflow "Old downloaded trees still import" runs on `ubuntu-24.04`.** On
-  `ubuntu-latest`, now Ubuntu 26, installing Playwright with its system dependencies failed, so
-  the check never ran on 0.40.0. Nothing else changed; the engine is the same as in 0.40.0.
+- **The workflow "Old downloaded trees still import" runs on `ubuntu-24.04`**, the image it was
+  written against. (The entry first gave the move of `ubuntu-latest` to Ubuntu 26 as the reason
+  the check failed on 0.40.0. The log showed otherwise; see 0.40.2.) The engine is the same as in
+  0.40.0.
 
 ## [0.40.0] - 2026-11-11
 

@@ -30,9 +30,8 @@ permissions:
 
 jobs:
   import:
-    # Pinned, not ubuntu-latest: that label moved to Ubuntu 26 in October
-    # 2026, and `playwright install --with-deps` failed there on the first
-    # run (0.40.0). Move it when Playwright supports the newer image.
+    # Pinned to the image the check was written against; ubuntu-latest is
+    # moving to Ubuntu 26.
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +44,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install playwright
-          python -m playwright install --with-deps chromium
+          # The runs on 0.40.0 and 0.40.1 failed here because the runner could
+          # not resolve Ubuntu's package mirror, not because of the engine. The
+          # runner images already carry what Chromium needs, so if the system
+          # packages cannot be fetched, install the browser without them.
+          python -m playwright install --with-deps chromium || python -m playwright install chromium
 
       - name: Open every old download with this engine
         run: python tools/check-import.py

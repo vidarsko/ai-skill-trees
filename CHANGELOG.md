@@ -7,6 +7,22 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.41.2] - 2026-11-11
+
+### Fixed
+
+- **A learning goal gets the same code (A1, B3 …) in every browser.** The codes follow the map,
+  row by row and left to right, and the map came from the measured size of the cards. That size
+  depends on the font, the browser and the zoom, so the same tree could number its goals
+  differently on an iPad than on a PC: in Mathematics 2P, WebKit at 2× gave 11 of 104 goals a
+  different code than Chrome. The codes could also change once while a page loaded, when the font
+  arrived and the tree was drawn again. Now the search for a tidier layout works with the standard
+  card size, and the codes are sorted by level, grid row and position, not by the compacted
+  height. The drawing still uses the measured sizes. Tested in Chromium, Firefox and WebKit at
+  1×, 1.25× and 2× and in a narrow window: the codes are identical in all of them, and they no
+  longer change when the font arrives. **Codes change once in most trees** (19 of 66 in
+  Profag:KI-matematikk, 52 of 104 in Mathematics 2P), and then stay put.
+
 ## [0.41.1] - 2026-11-11
 
 ### Changed

@@ -7,6 +7,14 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.40.1] - 2026-11-11
+
+### Fixed
+
+- **The workflow "Old downloaded trees still import" runs on `ubuntu-24.04`.** On
+  `ubuntu-latest`, now Ubuntu 26, installing Playwright with its system dependencies failed, so
+  the check never ran on 0.40.0. Nothing else changed; the engine is the same as in 0.40.0.
+
 ## [0.40.0] - 2026-11-11
 
 A redesign of the tree page around a written set of design principles (few words, explanations

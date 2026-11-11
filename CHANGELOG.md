@@ -7,6 +7,16 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.41.1] - 2026-11-11
+
+### Changed
+
+- **"Show the whole tree" takes you back again.** The first press remembers the zoom and position
+  and shows the whole tree; the next press returns to where you were. The arrows point outwards
+  or inwards to say which, and the label changes too (new string `restoreView`). Zooming in the
+  meantime forgets the old view, since you have chosen a new one; dragging the map does not. The
+  0 key does the same as the button. Asked for by Olav Elnan, who found it hard to get back.
+
 ## [0.41.0] - 2026-11-11
 
 ### Changed

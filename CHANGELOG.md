@@ -7,6 +7,14 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.40.3] - 2026-11-11
+
+### Fixed
+
+- **"Edit the tree" in the menu sits on one line with its icon**, like the other items. An older
+  rule gave the link `display: block`, which overrode the new row layout and put the text under
+  the icon. Only on sites that name an editor (`aist-editor`), so it was not seen locally.
+
 ## [0.40.2] - 2026-11-11
 
 ### Fixed

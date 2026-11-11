@@ -1,0 +1,48 @@
+name: Old downloaded trees still import
+
+# Teachers download skill trees as single HTML files and later bring them back
+# into the builder at aiskilltrees.com/make-your-own/. The builder takes only
+# the spreadsheet out of such a file (tree.csv in window.AIST_BUNDLE) and
+# builds everything else with the current engine, so a change to how trees
+# LOOK cannot break an import. A change to the tree.csv FORMAT can: a renamed
+# setting, node type or instruction section is reported as an error by the
+# engine, on a tree the teacher never touched.
+#
+# This job opens every file in tests/import/ — real downloads from earlier
+# versions — with the engine in this commit, and fails if any of them shows an
+# error. When a release changes what a downloaded file looks like, add a fresh
+# download to tests/import/ (see the README there).
+#
+# It runs on every push and pull request, and before the release job matters:
+# a red run here on the commit that bumps CITATION.cff is the signal not to let
+# the site's MACHINERY_REF follow that tag.
+
+# Quoted for the same reason as in release.yml: in YAML 1.1 a bare `on` parses
+# as the boolean true.
+"on":
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright with Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Open every old download with this engine
+        run: python tools/check-import.py

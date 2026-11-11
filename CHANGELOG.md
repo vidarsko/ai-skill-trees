@@ -7,6 +7,73 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.40.0] - 2026-11-11
+
+A redesign of the tree page around a written set of design principles (few words, explanations
+behind "?", a learning goal always looks the same, nothing moves when something is pressed), and
+new resources for teachers.
+
+### Added
+
+- **"Make a resource" in the lesson plans window.** A teacher picks learning goals and chooses
+  between three cards: a lesson plan (lesson type and length as buttons rather than drop-downs), a
+  **mini tree** and a **simulation**. Both of the new ones are instructions for a chat model that
+  returns one self-contained HTML file for students. New instruction modules `miniTree`
+  (`mini-tree.json` 0.1.0), built on the principles of special-education teacher Nina Haugerud,
+  and `simulation` (`simulation.json` 0.1.0), after the prompt by Henning Vinjusveen Myhrehagen on
+  skolesim.no. Both are credited on their cards. Manifest 3.1.0.
+- **The test opens a window with options**: difficulty (easy, medium, hard), number of tasks, and
+  closed, open or mixed tasks, plus "The test covers:" with every goal as a small tag that can be
+  chosen or left out. The mastered goals are chosen from the start. `test-generator.json` 2.2.0
+  gains the sections `difficultyEasy`, `difficultyMedium`, `difficultyHard`, `formatClosed`,
+  `formatOpen` and `formatMixed`, and speaks of the chosen goals rather than the mastered ones.
+- **Motivation opens a window too**: where the student starts ("Don't know", "It's hard", "It's
+  boring", "What will I need it for?") and the length. `motivation.json` 2.2.0 gains `startHard`,
+  `startBored`, `startUse`, `lengthShort` and `lengthLong`.
+- **Print**: the whole tree as one PDF page in A4, A3 or A2, with a live preview. Orientation
+  automatic, landscape or portrait; colour or black and white; rings to tick with a pen; a legend
+  of the three shapes. The title and aiskilltrees.com are always on the sheet. A wide tree is laid
+  out in several rows of topics when that gives larger text. The PDF is made in the browser with
+  no library, so it works in the downloaded single file too.
+- **Keyboard shortcuts**: Ctrl+K (⌘K) opens search, Esc closes what is on top (the detail panel
+  too), + and − zoom, 0 shows the whole tree. Listed under "Keyboard shortcuts" in Help.
+- **A tidier layout.** Cards move up as far as their prerequisites allow instead of standing in
+  fixed rows (`layout.compact`, `layout.compactGap`), and a small deterministic search then moves
+  cards half a place sideways or swaps neighbours where that gives fewer crossing edges, fewer
+  edges under cards and shorter edges (`layout.optimize`). Goal codes follow the new places, so a
+  code can differ from the previous version. All three can be switched off in `tree.csv`.
+- **A test that old downloaded trees still import**: `tools/check-import.py`, four real downloads
+  in `tests/import/`, and the workflow "Old downloaded trees still import".
+
+### Changed
+
+- **Cards**: as large as their text, with the code at the top left and a tick on the right that is
+  grey until pressed and green when mastered. The corners say the type: facts sharp, concepts
+  slightly rounded, skills round. "Part 1" and the type are no longer on the card; the detail
+  panel shows the type in a tag of the type's own colour and shape. Pressing a selected card
+  deselects it.
+- **Lists**: every learning goal in Learning goals and Lesson plans is a small version of its card,
+  faded until chosen or mastered. The "Ready to learn" and "Missing first" status lines are gone.
+  A chosen set is shown as small tags with the code only.
+- **"Mark many"** buttons are list icons rather than ✓ and ✕: every row ticked, or every row
+  empty, and two lists marked A and B when the button applies to the whole tree. Their text is in
+  the title and label.
+- **Menu**: grouped by who it is for (Practise, Plan, About), each item with a small low-poly icon
+  and a noun for a name, a close button in the corner, and no title or tagline.
+- **"?" instead of introductions**: every window explains itself in a bubble behind "?" that lies
+  over the content. Help is rewritten short, with a small drawing beside each section.
+- **Nothing jumps**: buttons that change text keep the width of the longest text, hints under a
+  choice keep the height of the longest, and windows are anchored at the top.
+- **Back and close** are plain text with an underline on hover; pills are for actions.
+- Zoom buttons in the order −, +, whole tree. Topic names above the columns are larger.
+- The subject families no longer tell the test generator to "vary the difficulty"; the window
+  sets it (every family's minor version bumped).
+
+### Fixed
+
+- A tree with `features.exams,false`, written by the builder before 0.22.0, loads without an
+  error again. Only `true` is reported, since then there are exam tasks to move.
+
 ## [0.39.0] - 2026-11-04
 
 ### Added

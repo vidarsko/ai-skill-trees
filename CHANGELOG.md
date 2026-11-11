@@ -7,6 +7,20 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.41.0] - 2026-11-11
+
+### Changed
+
+- **The mini tree is laid out like Nina Haugerud's "ready for the test" files** (`mini-tree.json`
+  0.2.0). The model now groups the selected goals into a few themes it names itself, each a row of
+  three level cards, with the tree in a left panel and the workspace on the right. Each round of
+  three problems is checked together, shows the answer and an explanation, and then locks, and the
+  mixed practice test is open from the start. 0.1.0 drew one card per goal with the tree's arrows,
+  which reproduced the goals' wording instead of making something to practise in. The tree still
+  sets the order: goals that build on each other share a theme, earlier goals sit at the lower
+  levels, and the themes others build on come first. Section ids and conditions are unchanged. The
+  picker's "Levels per learning goal" is now "Levels per theme".
+
 ## [0.40.3] - 2026-11-11
 
 ### Fixed

@@ -7,6 +7,19 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.42.0] - 2026-11-13
+
+### Changed
+
+- **The Test window shows only the learning goals that are selected.** Until now it showed every
+  goal in the tree as a small tag, with the mastered ones highlighted, which was a lot to take in
+  before choosing anything. Now it shows only the selected ones, which at the start are the ones
+  marked as mastered. A new icon in front of them (tags in three rows) shows all the goals, with
+  the select-all buttons, so more can be added; pressing it again goes back. A goal deselected in
+  the short list stays as a faint tag rather than vanishing, so nothing moves under the pointer.
+  With nothing selected, the window says “No learning goals selected” in red.
+  New strings `exam.showAll` and `exam.showSelected` in all three language files.
+
 ## [0.41.2] - 2026-11-11
 
 ### Fixed

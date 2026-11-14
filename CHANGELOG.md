@@ -7,6 +7,18 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.42.1] - 2026-11-14
+
+### Fixed
+
+- **The «?» explanation stays on screen on a phone.** The bubble was placed with its right edge
+  under the button and was wider than the space to the left of it, so on a narrow screen the
+  start of every line was cut off, in every window with a «?». It is now moved in so it stays
+  inside the screen, and the arrow still points at the button.
+- **A window's heading and buttons no longer push the window past the edge on a phone.** In
+  “Lesson plans” the heading, «?», “Copy all” and “Close” did not fit on one line, and the
+  window grew wider than the screen. On narrow screens the buttons now go on a line of their own.
+
 ## [0.42.0] - 2026-11-13
 
 ### Changed

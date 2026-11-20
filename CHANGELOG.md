@@ -7,6 +7,30 @@ All notable changes to this project are recorded here. The format follows
 The website pins a tag rather than tracking `main`, so a release here is what makes a change
 visible at aiskilltrees.com.
 
+## [0.43.0] - 2026-11-20
+
+### Added
+
+- **38 new language files**, so a tree written in any of these languages shows its buttons,
+  panels and the AI instruction's language layer in that language instead of English:
+  Albanian (`sq`), Armenian (`hy`), Azerbaijani (`az`), Belarusian (`be`), Bosnian (`bs`),
+  Bulgarian (`bg`), Croatian (`hr`), Czech (`cs`), Danish (`da`), Dutch (`nl`), Estonian (`et`),
+  Finnish (`fi`), French (`fr`), Georgian (`ka`), German (`de`), Greek (`el`), Hungarian (`hu`),
+  Icelandic (`is`), Italian (`it`), Kazakh (`kk`), Kyrgyz (`ky`), Latvian (`lv`), Lithuanian
+  (`lt`), Macedonian (`mk`), Maltese (`mt`), Montenegrin (`cnr`), Polish (`pl`), Portuguese
+  (`pt`, European), Romanian (`ro`), Russian (`ru`), Serbian (`sr`, Cyrillic), Slovak (`sk`),
+  Slovenian (`sl`), Spanish (`es`), Tajik (`tg`), Turkish (`tr`), Ukrainian (`uk`) and Uzbek
+  (`uz`). Each file's lead-ins ("The pupil can:") are worded so the skill descriptions written in
+  that language read grammatically after them. All address the learner informally. They were
+  written with AI for the maths trees of the ETUCE member countries and have not yet been read
+  by native speakers.
+
+### Fixed
+
+- **The learner word gets a capital letter by the language's own rules.** Georgian has no
+  capital letters, and `toUpperCase()` turned the first letter into Mtavruli; it is now left as
+  it is. Turkish and Azerbaijani get İ, not I, for a word beginning with i.
+
 ## [0.42.1] - 2026-11-14
 
 ### Fixed
